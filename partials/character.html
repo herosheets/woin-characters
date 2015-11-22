@@ -1,0 +1,286 @@
+{{ship}}
+
+<div class="row">
+    <div class="col-md-8">
+        <table class='centered' cols="10" frame="void" rules="none" border="0" cellspacing="0">
+            <colgroup>
+                <col width="157">
+                <col width="72">
+                <col width="61">
+                <col width="71">
+                <col width="52">
+                <col width="50">
+                <col width="43">
+                <col width="48">
+                <col width="48">
+                <col width="48">
+            </colgroup>
+            <tbody>
+            <tr>
+                <td colspan="10" align="center" height="23" bgcolor="#cccccc"
+                    valign="bottom" width="650">{{ship.name}} Class {{ship.hull.Class}} {{ship.hullConfig.Type}}</b></td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Weight</span>
+                    <span ng-bind="calculateWeight(ship.hull.Tonnage) | number:0 "></span> tons;
+                    <span style="font-weight: bold;">Cargo Units</span>
+                    <span ng-bind="presentCargo()"></span><br>
+                    <span style="font-weight: bold;">Hull Class </span>
+                    <span ng-bind='ship.hull.Class || "none"'></span> (INIT <span ng-bind="ship.hull.INITIATIVE || 0"></span>)<br>
+                    <span style="font-weight: bold;">Traits</span> {{ship.hullConfig.Traits}}<br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Crew</span>
+                    <span ng-bind="calculateCrew() || 0"></span> (cost <span ng-bind="(calculateCrew() * 200)"></span>cr/m);
+                    <span style="font-weight: bold;">Troops</span>
+                    <span ng-bind="ship.Crew.Troops || 0"></span>; <strong>Passengers</strong>
+                    <span ng-bind="ship.Crew['Standard Passengers'] + ship.Crew['Luxury Passengers'] || 0"></span>
+                    (<span ng-bind="ship.Crew['Standard Passengers'] || 0"></span> standard, <span ng-bind="ship.Crew['Luxury Passengers'] || 0"></span> luxury)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
+                    <b>Command &amp; Control Systems</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Computers </span>
+                    <span ng-repeat="(name, quantity) in ship['Control Computers']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (CPU cycles: <span ng-bind="computerHash[name]['CPU']"></span>;
+                        max FTL: <span ng-bind="computerHash[name]['Max FTL']"></span>;
+                        checks: <span ng-bind="computerHash[name].Checks"></span>)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Power Plants</span>
+                    <span ng-repeat="(name, quantity) in ship['Power Plant']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (CPU cycles: <span ng-bind="powerplantHash[name]['CPU']"></span>;
+                        max FTL: <span ng-bind="powerplantHash[name]['Max FTL']"></span>;
+                        checks: <span ng-bind="powerplantHash[name].Checks"></span>)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Sensors</span>
+                    <span ng-bind="ship.sensor['Sensor Systems'] || 'none'"></span>
+                    (range <span ng-bind="ship.sensor.Range || 0"></span>; check <span ng-bind="ship.sensor.Checks || 0"></span>)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
+                    <b>Engine &amp; Propulsion Data</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Subluminal</span>
+                      <span ng-repeat="(name, quantity) in ship['Sub-luminal Engine']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (power: <span ng-bind="sublHash[name]['Power']"></span>;
+                        SPEED: <span ng-bind="calculateSublSpeed(name, quantity) | number:1"></span>;
+                        fuel efficiency: <span ng-bind="sublHash[name]['Fuel Eff']"></span>)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">FTL</span>
+                    <span ng-if="ship['FTL Engine'] === undefined || isEmpty('FTL Engine')">-</span>
+                      <span ng-repeat="(name, quantity) in ship['FTL Engine']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (power: <span ng-bind="ftlHash[name]['Power']"></span>;
+                        FTL: <span ng-bind="calculateFtl(name, quantity) | number:1"></span>;
+                        fuel efficiency: <span ng-bind="ftlHash[name]['Fuel Eff']"></span>)
+                    <br>
+                    <span style="font-weight: bold;">Backup FTL</span>
+                     <span ng-if="ship['Backup FTL Engine'] === undefined || isEmpty('Backup FTL Engine')">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Backup FTL Engine']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (power: <span ng-bind="ftlHash[name]['Power']"></span>;
+                        FTL: <span ng-bind="calculateFtl(name, quantity) | number:1"></span>;
+                        fuel efficiency: <span ng-bind="ftlHash[name]['Fuel Eff']"></span>)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Operational Range</span>
+                    <span ng-bind="calculateOperationalRange()"></span> parsecs
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Defensive Data</b></td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Superstructure</span>
+                    <span ng-bind="calculateSuperstructure() || 'none'"></span>
+                    <span style="font-weight: bold;">DEFENSE</span>
+                    <span>{{calculateDefense() | number:0}}</span>
+                    <span style="font-weight: bold;">ELECTRONIC DEFENSE</span>
+                    <span ng-bind="calculateElectronicDefense()"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Armor</span>
+                    <span ng-bind="presentArmor() || 'none'"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Shields</span>
+                    <span ng-if="ship['Deflector Shields'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Deflector Shields']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (power <span ng-bind="deflectorHash[name]['Power'] * quantity"></span>;
+                        SOAK <span ng-bind="calculateSoak(deflectorHash[name]['Power'], quantity)"></span>)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Point Defenses</span>
+                    <span ng-if="ship['Point Defenses'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Point Defenses']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (+{{pointDefensesHash[name]['DEFENSE'] * quantity/getNumericShipClass() | number:0}} vs. missiles and fighters, Aura: {{ pointDefensesHash[name]['Aura'] }})
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Weapons Data</b></td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                     <span ng-repeat="(name, quantity) in ship['Weapon System']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
+                        (range <span ng-bind="calculateWeaponRange(name)"></span>;
+                        damage <span ng-bind="weaponHash[name]['Damage']"></span>;
+                        attack <span ng-bind="weaponHash[name]['Attack']"></span>)<br/>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Facilities</b></td>
+            </tr>
+            <tr>
+                <td colspan="10" sdnum="2057;0;0" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Luxury</span>
+                    <span ng-bind="calculateLuxury() || 'none'"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11" align="left" height="17" valign="bottom"><span style="font-weight: bold;">Facilities</span>
+                    <span ng-repeat="(name, quantity) in ship['Facilities']">
+                        <span ng-bind="name"></span> (<span ng-bind="quantity"></span>),
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>General Systems</b></td>
+            </tr>
+            <tr>
+                <td colspan="12" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Fueling</span>
+                    <span ng-if="ship['Fueling'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Fueling']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Electronic Warfare</span>
+                    <span ng-if="ship['Electronic Warfare'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Electronic Warfare']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Tractor Beams</span>
+                    <span ng-if="ship['Tractor Beam'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Tractor Beam']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Cloaking Device</span>
+                    <span ng-if="ship['Cloaking'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Cloaking']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Engineering</span>
+                    <span ng-if="ship['Engine Mods'] === undefined">-</span>
+                     <span ng-repeat="(name, quantity) in ship['Engine Mods']">
+                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Hangars & Bays</b></td>
+            </tr>
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Shuttles</span>
+                    {{countShuttles()}} (
+                        <span ng-repeat="(name, quantity) in ship['Hangar Bay Shuttle']">
+                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                        </span>
+                    )
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Fighters</span>
+                    {{countFighters()}} (
+                        <span ng-repeat="(name, quantity) in ship['Hangar Bay Fighter']">
+                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                        </span>
+                    )
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10" align="left" height="17" valign="bottom">
+                    <span style="font-weight: bold;">Vehicles</span>
+                    {{countVehicles()}} (
+                        <span ng-repeat="(name, quantity) in ship['Hangar Bay Vehicle']">
+                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
+                        </span>
+                    )
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
+                    <b>Market Value {{ totalCost() }} MCr</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="well">
+            {{ ship['description'] }}
+        </div>
+    </div>
+
+</div>

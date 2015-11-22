@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-framework="angularjs" ng-app="woin-starship" ng-controller="StarshipCtrl">
+	<head>
+		<meta charset="utf-8">
+		<title>What's OLD is NEW - Starship Builder</title>
+		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./bower_components/angular-off-canvas/off-canvas.css">
+		<link rel="stylesheet" href="./woin.css">
+	</head>
+	<body>
+		<div class="off-canvas__container off-canvas__content">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<button type="button" ng-click="toggleSidenav()" class="navbar-toggle visible-xs visible-sm navbar-left pull-left" style="max-height: 34px; margin-left: 10px;">
+							<i class="glyphicon glyphicon-th-list"></i>
+						</button>
+						<a class="navbar-brand" href="#">
+							WOIN - Starships
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Your Starship <span class="sr-only">(current)</span></a></li>
+							<li><a href="http://woinrpg.com/" target="_blank">WOIN</a></li>
+							<li><a href ng-click="save()">Save</a></li>
+							<li><a href ngf-select ngf-change="load($files)">Load</a></li>
+							<li><a href="http://www.enworld.org/forum/rpgdownloads.php?categoryid=41" target="_blank">Shipyard (Share)</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a>
+									<strong>Power/CPU</strong>: {{ maxCpu() - currentCpu() | number:2 }}
+									<strong>Cargo Units</strong>: {{ maxSpace() - currentSpace() }}
+									<strong>Credits Spent</strong>: {{ totalCost() | number:2 }}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container-fluid" style="margin-top: 50px;">
+				<ui-view />
+			</div>
+		</div>
+
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./js/bundle.js"></script>
+		<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" ></script>
+		<script src="./bower_components/papaparse/papaparse.min.js"></script>
+		<script src="./bower_components/lodash/lodash.min.js"></script>
+		<script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script src="./bower_components/angular-ui-router-tabs/src/ui-router-tabs.js"></script>
+		<script src="./bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+		<script src="./bower_components/angular-off-canvas/off-canvas.js"></script>
+	</body>
+</html>
