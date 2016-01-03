@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en" data-framework="angularjs" ng-app="woin-character" ng-controller="StarshipCtrl">
+<html lang="en" data-framework="angularjs" ng-app="woin-character" ng-controller="characterCtrl">
 	<head>
 		<meta charset="utf-8">
-		<title>What's OLD is NEW - Starship Builder</title>
+		<title>What's OLD is NEW - Character Builder</title>
 		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./bower_components/angular-off-canvas/off-canvas.css">
 		<link rel="stylesheet" href="./woin.css">
@@ -22,13 +22,13 @@
 							<i class="glyphicon glyphicon-th-list"></i>
 						</button>
 						<a class="navbar-brand" href="#">
-							WOIN - Starships
+							WOIN - Characters
 						</a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Your Starship <span class="sr-only">(current)</span></a></li>
+							<li class="active"><a href="#">Your Character<span class="sr-only">(current)</span></a></li>
 							<li><a href="http://woinrpg.com/" target="_blank">WOIN</a></li>
 							<li><a href ng-click="save()">Save</a></li>
 							<li><a href ngf-select ngf-change="load($files)">Load</a></li>

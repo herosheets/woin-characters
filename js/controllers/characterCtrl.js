@@ -164,25 +164,16 @@ var getTotalCrew = function (ship, scope) {
 
 var tabs = [
   {heading: 'Basics', route: 'main.basics'},
-  {heading: 'Hull Class', route: 'main.hull'},
-  {heading: 'Command & Control', route: 'main.command'},
-  {heading: 'Power Plants', route: 'main.powerplants'},
-  {heading: 'Ship Sensors', route: 'main.sensors'},
-  {heading: 'Crew', route: 'main.crew'},
-  {heading: 'Sub-Luminal Engines', route: 'main.subluminal'},
-  {heading: 'FTL Engines', route: 'main.ftl'},
-  {heading: 'Superstructure', route: 'main.superstructure'},
-  {heading: 'Deflector Shields', route: 'main.deflectors'},
-  {heading: 'Point Defense', route: 'main.pointdefense'},
-  {heading: 'Weaponry', route: 'main.weaponry'},
-  {heading: 'Facilities', route: 'main.facilities'},
-  {heading: 'Hangars', route: 'main.hangars'},
-  {heading: 'Tractor Beams', route: 'main.tractor'},
-  {heading: 'Engine Mods', route: 'main.enginemods'},
-  {heading: 'Fueling', route: 'main.fueling'},
-  {heading: 'Cloaking Devices', route: 'main.cloaking'},
-  {heading: 'Electronic Warfare', route: 'main.electronicwarfare'},
-  {heading: 'Your Ship', route: 'main.ship'}
+  {heading: 'Careers', route: 'main.careers'},
+  {heading: 'Chi', route: 'main.chi'},
+  {heading: 'Exploits', route: 'main.exploits'},
+  {heading: 'Homeland', route: 'main.homeland'},
+  {heading: 'Hook', route: 'main.hook'},
+  {heading: 'Magic', route: 'main.magic'},
+  {heading: 'Origin', route: 'main.origin'},
+  {heading: 'Psionics', route: 'main.psionics'},
+  {heading: 'Race', route: 'main.race'},
+  {heading: 'Your Character', route: 'main.character'}
 ];
 
 angular.module('woin-character')

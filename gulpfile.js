@@ -72,7 +72,7 @@ gulp.task('build-template-cache', ['clean'], function() {
     
     return gulp.src("./partials/*.html")
         .pipe(ngHtml2Js({
-            moduleName: "starshipPartials",
+            moduleName: "characterPartials",
             prefix: "/partials/"
         }))
         .pipe(concat("templateCachePartials.js"))
@@ -137,8 +137,8 @@ gulp.task('copy:bower', ['clean'], function() {
 });
 
 gulp.task('copy:data', ['clean'], function() {
-    return gulp.src('./starship_data/**/*')
-        .pipe(gulp.dest('./dist/starship_data'));
+    return gulp.src('./character_data/**/*')
+        .pipe(gulp.dest('./dist/character_data'));
 });
 
 gulp.task('cname', ['clean'], function() {

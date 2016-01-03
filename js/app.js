@@ -43,6 +43,12 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 				url: '/',
 				templateUrl: '/partials/character-index.html'
 			})
+			.state('main.basics', {
+				url: 'basics',
+				views: {
+					content: { templateUrl: '/partials/basics.html' }
+				}
+			})
 			.state('main.race', {
 				url: 'race',
 				views: {
