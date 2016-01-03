@@ -457,6 +457,10 @@ angular.module('woin-character')
       if ($scope.ship[KEY][itemKey] <= 0 || _.isNaN($scope.ship[KEY][itemKey])) delete $scope.ship[KEY][itemKey];
     };
 
+    var skillCategories = {
+      scientific: ['anatomy']
+    };
+
     $scope.meetsCriteria = function(playerData, reqString) {
       var reqs = _.compact(reqString.split(';'));
 
@@ -467,6 +471,13 @@ angular.module('woin-character')
         var cat = opts[0];
         var name = opts[1];
         var val = opts[2] || 0;
+
+        // category
+        if(name.startsWith('[')) {
+          name = name.substring(1, name.length-1);
+          var allSkillChecks = _.map(skillCategories[name], function(name) { return playerData[cat] ? playerData[cat][name] : 0; });
+          return _.any(allSkillChecks, function(val) { return val > 0; });
+        }
 
         return playerData[cat] && playerData[cat][name] >= val;
       }));
