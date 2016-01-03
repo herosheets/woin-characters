@@ -117,7 +117,7 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.exploits.push(row.data[0]);
-            var KEY = 'Exploits';
+            var KEY = 'Exploit';
             scope.exploitsHash = {};
             _.each(scope.exploits, function (item) {
               scope.exploitsHash[item[KEY]] = item;

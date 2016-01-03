@@ -24,7 +24,7 @@ var quantityComponents = {
   'Hangar Bay Fighter': 'hangarHash',
   'General': 'generalHash',
   'Cloaking': 'generalHash',
-  'Electronic Warfare': 'generalHash',
+  'Exploits': 'exploitsHash',
   'Tractor Beam': 'generalHash',
   'Fueling': 'generalHash',
   'Engine Mods': 'generalHash'
@@ -455,6 +455,21 @@ angular.module('woin-character')
       if(!value) value = 1;
       $scope.ship[KEY][itemKey] -= value;
       if ($scope.ship[KEY][itemKey] <= 0 || _.isNaN($scope.ship[KEY][itemKey])) delete $scope.ship[KEY][itemKey];
+    };
+
+    $scope.meetsCriteria = function(playerData, reqString) {
+      var reqs = _.compact(reqString.split(';'));
+
+      if(reqs.length === 0) return true;
+
+      return _.all(_.map(reqs, function(req) {
+        var opts = req.split(':');
+        var cat = opts[0];
+        var name = opts[1];
+        var val = opts[2] || 0;
+
+        return playerData[cat] && playerData[cat][name] >= val;
+      }));
     };
 
     $scope.save = function() {
