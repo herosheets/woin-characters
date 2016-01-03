@@ -1,0 +1,6 @@
+Race,Size,Attributes,Skill Choices,Exploits
+Ogron,Large,"str:2,end:2","carrying, hardy, bravery, intimidate","Dull-witted, Smelly, Brawny, stronger with age"
+Spartan,Medium,"str:1,agi:1,end:1","[combat], intimidate, carousing","Berserker, Redundant organs, Warlike"
+Felan,Medium,"agi:2,int:1,cha:1,luc:1","acrobatics, climbing, jumping, [unarmed fighting], reactions, appraisal","Fast, Jumper, Land on your feet, Claws"
+Borian,Small,"end:1,int:1,cha:1,rep:1","carousing, hardy, [crafting], engineering, appraisal","Darksight, Iron constitution"
+Human,Medium,"luc:2,any:2,any:1","carousing, hardy, [crafting], engineering, appraisa","Varied, Explorer"
