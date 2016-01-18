@@ -5,13 +5,18 @@ angular.module('woin-character')
   .controller('RaceCtrl', function RaceCtrl($scope) {
 
     var KEY = $scope.KEY = 'Race';
-    if(!$scope.ship[KEY]) $scope.ship[KEY] = {};
+    if(!$scope.character[KEY]) $scope.character[KEY] = {};
     $scope.generalHash = $scope.$parent.generalHash;
 
-    $scope.notValidHull = function(string) {
-      if(!$scope.ship.hull) return true;
-      var arr = string.split(' ');
-      var validHulls = arr[arr.length-1].split(';');
-      return validHulls.indexOf($scope.ship.hull.Class) === -1;
+    $scope.printAttributes = function(attributeString) {
+      var attributes = attributeString.split(',');
+      var printString = '';
+      angular.forEach(attributes, function(attr) {
+        var tokens = attr.split(':');
+        printString += tokens[0].toUpperCase() + " +" + tokens[1] + ', ';
+      });
+
+      return printString.substring(0, printString.length - 2);
     };
+
   });

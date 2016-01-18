@@ -20,7 +20,13 @@ angular.module('woin-character').service('Components',
       var magics = 'testempty';
       var origins = 'testempty';
       var psionics = 'testempty';
-      var races = 'testempty';
+      var races =
+        "Race,Size,Attributes,Skill Choices,Exploits\n"+
+        "Ogron,Large,\"str:2,end:2\",\"carrying, hardy, bravery, intimidate\",\"Dull-witted, Smelly, Brawny, stronger with age\"\n"+
+        "Spartan,Medium,\"str:1,agi:1,end:1\",\"[combat], intimidate, carousing\",\"Berserker, Redundant organs, Warlike\"\n"+
+        "Felan,Medium,\"agi:2,int:1,cha:1,luc:1\",\"acrobatics, climbing, jumping, [unarmed fighting], reactions, appraisal\",\"Fast, Jumper, Land on your feet, Claws\"\n"+
+        "Borian,Small,\"end:1,int:1,cha:1,rep:1\",\"carousing, hardy, [crafting], engineering, appraisal\",\"Darksight, Iron constitution\"\n"+
+        "Human,Medium,\"luc:2,any:2,any:1\",\"carousing, hardy, [crafting], engineering, appraisa\",\"Varied, Explorer\"";
       var traits = 'testempty';
 
       self.loadCsvData = function (scope) {

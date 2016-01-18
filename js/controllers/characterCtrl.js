@@ -7,7 +7,7 @@
  */
 var angular = require('angular');
 
-var flatComponents = ['hull', 'sensor'];
+var flatComponents = ['hull', 'sensor', 'exploits'];
 
 var quantityComponents = {
   'Crew': 'crewHash',
@@ -193,7 +193,7 @@ angular.module('woin-character')
     // initialize data
     $scope.toggleSidenav = Sidenav.toggle;
     $scope.tabs = tabs;
-    $scope.ship = {name: "", description: "", hullConfig: {}};
+    $scope.character = {name: "", description: "" };
 
     Components.loadCsvData($scope);
 
