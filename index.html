@@ -34,15 +34,6 @@
 							<li><a href ngf-select ngf-change="load($files)">Load</a></li>
 							<li><a href="http://www.enworld.org/forum/rpgdownloads.php?categoryid=41" target="_blank">Shipyard (Share)</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a>
-									<strong>Power/CPU</strong>: {{ maxCpu() - currentCpu() | number:2 }}
-									<strong>Cargo Units</strong>: {{ maxSpace() - currentSpace() }}
-									<strong>Credits Spent</strong>: {{ totalCost() | number:2 }}
-								</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</nav>

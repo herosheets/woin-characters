@@ -167,7 +167,6 @@ angular.module('woin-character').service('Components',
             });
           },
           complete: function () {
-            console.log(scope.exploits);
             console.log("Exploits Loaded");
           }
         });
