@@ -3,4 +3,4 @@ def format_line(line)
   line.gsub!("\r\n", "")
   return "\"#{line}\\n\"+"
 end
-File.open('homeworlds.csv').each {|x| puts format_line(x) }
+File.open('careers.csv').each {|x| puts format_line(x) }

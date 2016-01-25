@@ -193,7 +193,7 @@ angular.module('woin-character')
     // initialize data
     $scope.toggleSidenav = Sidenav.toggle;
     $scope.tabs = tabs;
-    $scope.character = {name: "", description: "" };
+    $scope.character = {name: "", description: "", career: [] };
 
     Components.loadCsvData($scope);
 

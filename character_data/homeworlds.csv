@@ -1,0 +1,10 @@
+Homeworld,Attributes,Bonus Skill
+Agricultural,end:1;log:-1,Farming
+Arctic,end:1;agi-1,Survival
+Asteroid,agi:1;str-1,Zero-g or mining
+Barren,end:1;cha-1,Survival
+City,cha:1;end-1,Diplomacy or bureacracy
+Desert,end:1;agi-1,Navigation or survival
+Jungle,agi:1;end:-1,Climbing
+Ocean,agi:1;int-1,Swimming or sailing
+Volcanic,agi:1;str:-1,Dodging

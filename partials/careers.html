@@ -1,18 +1,54 @@
-<h2>Basic Ship Facts</h2>
+<h2>Careers</h2>
 <p class="explainer">
-    Name your vessel! This should be the vessel class name, not the name of the individual ship.
+   Choose four careers
 </p>
 
-<div class="row display-row">
-    <div class="col-md-3">Name</div>
-    <div class="col-md-9">
-        <input class="form-control" type="text" ng-model="ship.name">
-    </div>
-</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Career</th>
+        <th>Attributes</th>
+        <th>Skill Choices</th>
+        <th>Description</th>
+        <th>Exploits</th>
+        <th>Years</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in character.careers">
+            <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)">-</button></td>
+            <td>{{ c.Career }}</td>
+            <td>{{ printAttributes(c.Attributes) }}</td>
+            <td>{{ c['Skill Choices'] }}</td>
+            <td>{{ c.Description }}</td>
+            <td>{{ c.Exploits }}</td>
+            <td>{{ c.Years }}</td>
+        </tr>
+    </tbody>
+</table>
 
-<div class="row display-row margin-top-15">
-    <div class="col-md-3">Description</div>
-    <div class="col-md-9">
-        <textarea class="form-control" ng-model="ship.description" rows="3">
-    </div>
-</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Career</th>
+        <th>Attributes</th>
+        <th>Skill Choices</th>
+        <th>Description</th>
+        <th>Exploits</th>
+        <th>Years</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in localCareers">
+            <td><button type="button" class="btn btn-primary" ng-click="addItem(c)">+</button></td>
+            <td>{{ c.Career }}</td>
+            <td>{{ printAttributes(c.Attributes) }}</td>
+            <td>{{ c['Skill Choices'] }}</td>
+            <td>{{ c.Description }}</td>
+            <td>{{ c.Exploits }}</td>
+            <td>{{ c.Years }}</td>
+        </tr>
+    </tbody>
+</table>
