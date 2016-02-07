@@ -1,3 +1,3 @@
 Origin,Prerequisites,Attributes,Skill Choices,Description,Exploits,Years,Source
-Acolyte,none,int:1;wil:1;cha:1;luc:1,"religion, [artistic], intuition, meditation, medicine, herbalism, linguistics",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic
-Farmhand,none,str:1;end:1;luc:2,"nature, herbalism, animal handling, farming, fishing, survival","You grew up on a farm, learning how to manager crops and livestock.",Outdoorsman,2d6+6,Archaic
+Acolyte,none,"int:1,wil:1,cha:1,luc:1","religion, [artistic], intuition, meditation, medicine, herbalism, linguistics",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic
+Farmhand,none,"str:1,end:1,luc:2","nature, herbalism, animal handling, farming, fishing, survival","You grew up on a farm, learning how to manager crops and livestock.",Outdoorsman,2d6+6,Archaic

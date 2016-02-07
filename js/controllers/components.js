@@ -32,13 +32,13 @@ angular.module('woin-character').service('Components',
         "Desert,end:1;agi-1,Navigation or survival\n"+
         "Jungle,agi:1;end:-1,Climbing\n"+
         "Ocean,agi:1;int-1,Swimming or sailing\n"+
-        "Volcanic,agi:1;str:-1,Dodging\n";
+        "Volcanic,agi:1;str:-1,Dodging";
       var hooks = 'testempty';
       var magics = 'testempty';
       var origins =
         "Origin,Prerequisites,Attributes,Skill Choices,Description,Exploits,Years,Source\n"+
-        "Acolyte,none,int:1;wil:1;cha:1;luc:1,\"religion, [artistic], intuition, meditation, medicine, herbalism, linguistics\",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic\n"+
-        "Farmhand,none,str:1;end:1;luc:2,\"nature, herbalism, animal handling, farming, fishing, survival\",\"You grew up on a farm, learning how to manager crops and livestock.\",Outdoorsman,2d6+6,Archaic\n"
+        "Acolyte,none,\"int:1,wil:1,cha:1,luc:1\",\"religion, [artistic], intuition, meditation, medicine, herbalism, linguistics\",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic\n"+
+        "Farmhand,none,\"str:1,end:1,luc:2\",\"nature, herbalism, animal handling, farming, fishing, survival\",\"You grew up on a farm, learning how to manager crops and livestock.\",Outdoorsman,2d6+6,Archaic";
       var psionics = 'testempty';
       var races =
         "Race,Size,Attributes,Skill Choices,Exploits\n"+
