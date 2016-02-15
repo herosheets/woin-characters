@@ -425,7 +425,7 @@ angular.module('woin-character')
     };
 
     $scope.isEmpty = function (KEY) {
-      return _.size($scope.ship[KEY]) === 0;
+      return _.size($scope.character[KEY]) === 0;
     };
 
     $scope.incrementItem = function (KEY, itemKey, value) {

@@ -119,12 +119,7 @@ angular.module('woin-character').service('Components',
           download: doDownload,
           dynamicTyping: true,
           step: function (row) {
-            var KEY = 'Chi';
             scope.chis.push(row.data[0]);
-            scope.chiHash = {};
-            _.each(scope.chis, function (item) {
-              scope.chiHash[item[KEY]] = item;
-            });
           },
           complete: function () {
             console.log("Chi Loaded");

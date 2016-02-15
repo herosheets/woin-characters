@@ -1,59 +1,51 @@
-<h2>Cloaking Devices</h2>
+<h2>Chi</h2>
 <p class="explainer">
-   Clocking devices are resource-intensive, with high CPU overheads.  They take up a lot of space, and can be extremely expensive.</p>
-<h3>Your General Equipment</h3>
+    Chi does chi things.
+<h3>Your Chi</h3>
 <table class="table table-striped">
     <thead>
     <tr>
         <th></th>
-        <th>Count</th>
-        <th>Item</th>
-        <th>Space</th>
-        <th>Size</th>
-        <th>Cost</th>
-        <th>CPU</th>
-        <th>Notes</th>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Description</th>
     </tr>
     </thead>
     <tbody>
-    <tbody>
-    <tr ng-repeat="(name, count) in ship.Cloaking">
-        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
-        <td ng-bind="count"></td>
-        <td ng-bind="name"></td>
-        <td>{{generalHash[name].Space}}</td>
-        <td>{{generalHash[name].Size}}</td>
-        <td>{{generalHash[name].Cost}}</td>
-        <td>{{generalHash[name].CPU}}</td>
-        <td>{{generalHash[name].Notes}}</td>
-    </tr>
     <tr ng-if="isEmpty(KEY)">
-        <td colspan="7" class="text-center">No cloaking equipment selected.</td>
+        <td colspan="5" class="text-center">No chi selected.</td>
+    </tr>
+    </tbody>
+    <tbody ng-repeat="(chi, chiData) in character.Chi" ng-if="chiData.length > 0">
+    <tr><td colspan="5" class="text-center"><strong>{{chi}}</strong></td></tr>
+    <tr ng-repeat="c in chiData">
+        <td><button type="button" class="btn btn-primary"
+                    ng-disabled="$index !== character.Chi[chi].length-1"
+                    ng-click="unselectChi(chi, c)">Remove</button></td>
+        <td>{{c.Name}}</td>
+        <td>{{c.Rank}}</td>
+        <td>{{c.Description}}</td>
     </tr>
     </tbody>
 </table>
 <table class="table table-striped">
     <thead>
-    <tr colspan="7">
+    <tr colspan="5">
         <th></th>
-        <th>Item</th>
-        <th>Space</th>
-        <th>Size</th>
-        <th>Cost</th>
-        <th>CPU</th>
-        <th>Notes</th>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Description</th>
     </tr>
     </thead>
-    <tbody>
-    <tr><td colspan="7" class="text-center"><strong>Cloaking Systems</strong></td></tr>
-    <tr ng-repeat="c in systems.cloaking">
-        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, c.Item)" ng-disabled="notValidHull(c.Notes)">+</button></td>
-        <td>{{c.Item}}</td>
-        <td>{{c.Space}}</td>
-        <td>{{c.Size}}</td>
-        <td>{{c.Cost}}</td>
-        <td>{{c.CPU}}</td>
-        <td>{{c.Notes}}</td>
+    <tbody ng-repeat="(chi, chiData) in groupedChi">
+    <tr><td colspan="5" class="text-center"><strong>{{chi}}</strong></td></tr>
+    <tr ng-repeat="c in chiData">
+        <td><button type="button" class="btn btn-primary"
+                    ng-disabled="$index !== character.Chi[chi].length || currentChi === maxChi"
+                    ng-click="selectChi(chi, c)">Choose</button></td>
+        <td>{{c.Name}}</td>
+        <td>{{c.Rank}}</td>
+        <td>{{c.Description}}</td>
     </tr>
     </tbody>
 </table>
