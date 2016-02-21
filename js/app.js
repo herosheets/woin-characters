@@ -103,12 +103,6 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 					content: { controller: "EquipmentCtrl", templateUrl: '/partials/equipment.html' }
 				}
 			})
-			.state('main.magic', {
-				url: 'magic',
-				views: {
-					content: { controller: "MagicCtrl", templateUrl: '/partials/magic.html' }
-				}
-			})
 			.state('main.psionics', {
 				url: 'psionics',
 				views: {
@@ -141,6 +135,5 @@ require('exploitsCtrl');
 require('traitsCtrl');
 require('derivedCtrl');
 require('equipmentCtrl');
-require('magicCtrl');
 require('psionicsCtrl');
 require('chiCtrl');

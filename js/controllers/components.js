@@ -44,7 +44,6 @@ angular.module('woin-character').service('Components',
         "Jungle,agi:1;end:-1,Climbing\n"+
         "Ocean,agi:1;int-1,Swimming or sailing\n"+
         "Volcanic,agi:1;str:-1,Dodging";
-      var magics = 'testempty';
       var origins =
         "Origin,Prerequisites,Attributes,Skill Choices,Description,Exploits,Years,Source\n"+
         "Acolyte,none,\"int:1,wil:1,cha:1,luc:1\",\"religion, [artistic], intuition, meditation, medicine, herbalism, linguistics\",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic\n"+
@@ -66,7 +65,6 @@ angular.module('woin-character').service('Components',
         scope.equipment = [];
         scope.exploits = [];
         scope.homelands = [];
-        scope.magic = [];
         scope.origins = [];
         scope.psionics = [];
         scope.races = [];
@@ -190,24 +188,6 @@ angular.module('woin-character').service('Components',
           },
           complete: function () {
             console.log("Traits Loaded");
-          }
-        });
-
-        Papa.parse(doDownload ? getUrl('magic') : magics, {
-          header: true,
-          download: doDownload,
-          quotes: true,
-          dynamicTyping: true,
-          step: function (row) {
-            scope.magic.push(row.data[0]);
-            var KEY = 'Magic';
-            scope.magicHash = {};
-            _.each(scope.magic, function (item) {
-              scope.magicHash[item[KEY]] = item;
-            });
-          },
-          complete: function () {
-            console.log("Magic Loaded");
           }
         });
 
