@@ -1,59 +1,11 @@
-<h2>Engineering Modificatiions</h2>
+<h2>Hook</h2>
 <p class="explainer">
-     Repair bays handle damage control, and automated and crew repair systems. Regular repair bays work on the ship they are installed on, while remote repair bays can help to restore allied ships within range. </p>
-<h3>Your Engineering Mods</h3>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Count</th>
-        <th>Item</th>
-        <th>Space</th>
-        <th>Size</th>
-        <th>Cost</th>
-        <th>CPU</th>
-        <th>Notes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tbody>
-    <tr ng-repeat="(name, count) in ship['Engine Mods']">
-        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
-        <td ng-bind="count"></td>
-        <td ng-bind="name"></td>
-        <td>{{generalHash[name].Space}}</td>
-        <td>{{generalHash[name].Size}}</td>
-        <td>{{generalHash[name].Cost}}</td>
-        <td>{{generalHash[name].CPU}}</td>
-        <td>{{generalHash[name].Notes}}</td>
-    </tr>
-    <tr ng-if="isEmpty(KEY)">
-        <td colspan="7" class="text-center">No engine mods selected.</td>
-    </tr>
-    </tbody>
-</table>
-<table class="table table-striped">
-    <thead>
-    <tr colspan="7">
-        <th></th>
-        <th>Item</th>
-        <th>Space</th>
-        <th>Size</th>
-        <th>Cost</th>
-        <th>CPU</th>
-        <th>Notes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr><td colspan="7" class="text-center"><strong>Engine Mods</strong></td></tr>
-    <tr ng-repeat="c in systems.engMods">
-        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, c.Item)">+</button></td>
-        <td>{{c.Item}}</td>
-        <td>{{c.Space}}</td>
-        <td>{{c.Size}}</td>
-        <td>{{c.Cost}}</td>
-        <td>{{c.CPU}}</td>
-        <td>{{c.Notes}}</td>
-    </tr>
-    </tbody>
-</table>
+    A hook is the second half (Z) of the sentence "An X Y who/with Z"
+</p>
+
+<div class="row display-row margin-top-15">
+    <div class="col-md-3">Enter your hook</div>
+    <div class="col-md-9">
+        <textarea class="form-control" ng-model="character.hook" rows="3"/>
+    </div>
+</div>

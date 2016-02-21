@@ -64,7 +64,7 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 			.state('main.hook', {
 				url: 'hook',
 				views: {
-					content: { controller: 'HookCtrl', templateUrl: '/partials/hook.html' }
+					content: { templateUrl: '/partials/hook.html' }
 				}
 			})
 			.state('main.origin', {
@@ -135,7 +135,6 @@ require('characterCtrl');
 require('characterViewCtrl');
 require('raceCtrl');
 require('homelandCtrl');
-require('hookCtrl');
 require('originCtrl');
 require('careersCtrl');
 require('exploitsCtrl');

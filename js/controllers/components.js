@@ -44,7 +44,6 @@ angular.module('woin-character').service('Components',
         "Jungle,agi:1;end:-1,Climbing\n"+
         "Ocean,agi:1;int-1,Swimming or sailing\n"+
         "Volcanic,agi:1;str:-1,Dodging";
-      var hooks = 'testempty';
       var magics = 'testempty';
       var origins =
         "Origin,Prerequisites,Attributes,Skill Choices,Description,Exploits,Years,Source\n"+
@@ -67,7 +66,6 @@ angular.module('woin-character').service('Components',
         scope.equipment = [];
         scope.exploits = [];
         scope.homelands = [];
-        scope.hooks = [];
         scope.magic = [];
         scope.origins = [];
         scope.psionics = [];
