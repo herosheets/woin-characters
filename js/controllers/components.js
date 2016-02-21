@@ -48,7 +48,15 @@ angular.module('woin-character').service('Components',
         "Origin,Prerequisites,Attributes,Skill Choices,Description,Exploits,Years,Source\n"+
         "Acolyte,none,\"int:1,wil:1,cha:1,luc:1\",\"religion, [artistic], intuition, meditation, medicine, herbalism, linguistics\",A childhood spent in a monastery taught you well for a life of piety.,Daily Worship,2d6+6,Archaic\n"+
         "Farmhand,none,\"str:1,end:1,luc:2\",\"nature, herbalism, animal handling, farming, fishing, survival\",\"You grew up on a farm, learning how to manager crops and livestock.\",Outdoorsman,2d6+6,Archaic";
-      var psionics = 'testempty';
+      var psionics =
+        "Name,Category,Prereq,Description\n"+
+        "Adrenalize,Biopsionics,attr:psi:4,\"You can channel positive energy into somebody, granting them a +1d6 die bonus per 4 PSI to all physical attribute checks for one minute. This process is draining, however, and causes you 1d6 psionic damage for each 1d6 bonus you grant.\"\n"+
+        "Bioifeedback,Biopsionics,attr:psi:4,\"You psychically harden your skin, gaining SOAK 1 +1 per PSI until your next turn.\"\n"+
+        "Psychic Healiing,Biopsionics,attr:psi:6,You can heal 1d6 per 6 PSI HEALTH by touch. Any given creature canonly benefit from this power once per day.\n"+
+        "Psychic Resuscitation,Biopsionics,attr:psi:6,You may stabilize a dying creature by touch by spending two actions.\n"+
+        "Hypercognition,Clairsentience,attr:psi:8,\"When you use this power, everything appears to slow down for you. For 1 round per 4 PSI, you gain an extra action each round. Using this power is a free action.\"\n"+
+        "Precognition,Clairsentience,attr:psi:4,Your natural precognition gives you a +1d6 per 4 PSI bonus to INITIATIVE checks as well as checks to access the ambush turn.\n"+
+        "Retrocognition,Clairsentience,attr:psi:12,You can see into the past up to 1 day per PSI until your next turn. Your view is of your current location as though you were there at the time.";
       var races =
         "Race,Size,Attributes,Skill Choices,Exploits\n"+
         "Ogron,Large,\"str:2,end:2\",\"carrying, hardy, bravery, intimidate\",\"Dull-witted, Smelly, Brawny, stronger with age\"\n"+
@@ -216,7 +224,7 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.psionics.push(row.data[0]);
-            var KEY = 'Psionics';
+            var KEY = 'Name';
             scope.psionicsHash = {};
             _.each(scope.psionics, function (item) {
               scope.psionicsHash[item[KEY]] = item;

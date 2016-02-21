@@ -1,0 +1,8 @@
+Name,Category,Prereq,Description
+Adrenalize,Biopsionics,attr:psi:4,"You can channel positive energy into somebody, granting them a +1d6 die bonus per 4 PSI to all physical attribute checks for one minute. This process is draining, however, and causes you 1d6 psionic damage for each 1d6 bonus you grant."
+Bioifeedback,Biopsionics,attr:psi:4,"You psychically harden your skin, gaining SOAK 1 +1 per PSI until your next turn."
+Psychic Healiing,Biopsionics,attr:psi:6,You can heal 1d6 per 6 PSI HEALTH by touch. Any given creature can only benefit from this power once per day.
+Psychic Resuscitation,Biopsionics,attr:psi:6,You may stabilize a dying creature by touch by spending two actions.
+Hypercognition,Clairsentience,attr:psi:8,"When you use this power, everything appears to slow down for you. For 1 round per 4 PSI, you gain an extra action each round. Using this power is a free action."
+Precognition,Clairsentience,attr:psi:4,Your natural precognition gives you a +1d6 per 4 PSI bonus to INITIATIVE checks as well as checks to access the ambush turn.
+Retrocognition,Clairsentience,attr:psi:12,You can see into the past up to 1 day per PSI until your next turn. Your view is of your current location as though you were there at the time.

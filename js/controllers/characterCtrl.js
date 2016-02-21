@@ -430,10 +430,10 @@ angular.module('woin-character')
 
     $scope.incrementItem = function (KEY, itemKey, value) {
       if(!value) value = 1;
-      if (!$scope.ship[KEY][itemKey]) $scope.ship[KEY][itemKey] = 0;
-      $scope.ship[KEY][itemKey] += value;
+      if (!$scope.character[KEY][itemKey]) $scope.character[KEY][itemKey] = 0;
+      $scope.character[KEY][itemKey] += value;
 
-      if(_.isNaN($scope.ship[KEY][itemKey])) $scope.ship[KEY][itemKey] = 0;
+      if(_.isNaN($scope.character[KEY][itemKey])) $scope.character[KEY][itemKey] = 0;
     };
 
     // only allow one type of the item at a time
@@ -453,8 +453,8 @@ angular.module('woin-character')
 
     $scope.decrementItem = function (KEY, itemKey, value) {
       if(!value) value = 1;
-      $scope.ship[KEY][itemKey] -= value;
-      if ($scope.ship[KEY][itemKey] <= 0 || _.isNaN($scope.ship[KEY][itemKey])) delete $scope.ship[KEY][itemKey];
+      $scope.character[KEY][itemKey] -= value;
+      if ($scope.character[KEY][itemKey] <= 0 || _.isNaN($scope.character[KEY][itemKey])) delete $scope.character[KEY][itemKey];
     };
 
     var skillCategories = {
