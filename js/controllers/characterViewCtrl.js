@@ -2,7 +2,7 @@
 angular = require('angular');
 
 angular.module('woin-character')
-  .controller('ShipViewCtrl', function ShipViewCtrl($scope) {
+  .controller('CharacterViewCtrl', function CharacterViewCtrl($scope) {
     $scope = $scope.$parent;
 
     $scope.calculateWeight = function(weightString) {

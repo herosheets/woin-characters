@@ -1,285 +1,150 @@
-{{character}}
-
 <div class="row">
     <div class="col-md-8">
-        <table class='centered' cols="10" frame="void" rules="none" border="0" cellspacing="0">
+        <table cols="17" frame="void" rules="none" border="0" cellspacing="0">
             <colgroup>
-                <col width="157">
-                <col width="72">
-                <col width="61">
-                <col width="71">
-                <col width="52">
-                <col width="50">
-                <col width="43">
-                <col width="48">
-                <col width="48">
-                <col width="48">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="96">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
+                <col width="86">
             </colgroup>
             <tbody>
             <tr>
-                <td colspan="10" align="center" height="23" bgcolor="#cccccc"
-                    valign="bottom" width="650">{{character.name}} Class {{character.hull.Class}} {{character.hullConfig.Type}}</b></td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Weight</span>
-                    <span ng-bind="calculateWeight(character.hull.Tonnage) | number:0 "></span> tons;
-                    <span style="font-weight: bold;">Cargo Units</span>
-                    <span ng-bind="presentCargo()"></span><br>
-                    <span style="font-weight: bold;">Hull Class </span>
-                    <span ng-bind='character.hull.Class || "none"'></span> (INIT <span ng-bind="character.hull.INITIATIVE || 0"></span>)<br>
-                    <span style="font-weight: bold;">Traits</span> {{character.hullConfig.Traits}}<br>
+                <td colspan="17" height="24" align="left" bgcolor="#dddddd" width="1467">
+                    <b>
+                        <font size="4">
+                            {{ character.name }}
+                        </font>
+                    </b>
                 </td>
             </tr>
             <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Crew</span>
-                    <span ng-bind="calculateCrew() || 0"></span> (cost <span ng-bind="(calculateCrew() * 200)"></span>cr/m);
-                    <span style="font-weight: bold;">Troops</span>
-                    <span ng-bind="character.Crew.Troops || 0"></span>; <strong>Passengers</strong>
-                    <span ng-bind="character.Crew['Standard Passengers'] + character.Crew['Luxury Passengers'] || 0"></span>
-                    (<span ng-bind="character.Crew['Standard Passengers'] || 0"></span> standard, <span ng-bind="character.Crew['Luxury Passengers'] || 0"></span> luxury)
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">A
+                    <em>
+                       {{ character.hook }}
+                    </em><br/>
+                    <em>
+                        <!-- what is this? -->
+                        Small sentient humanoid (grade 5; max dice pool 5d6)
+                    </em>
                 </td>
             </tr>
             <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
-                    <b>Command &amp; Control Systems</b>
+                <td colspan="17" height="17" align="left"><span
+                        style="font-weight: bold;">STR</span>{{ character.attributes.STR }} 4 (2d6) <span
+                        style="font-weight: bold;">AGI</span>{{ character.attributes.AGI }} 7 (3d6) <span
+                        style="font-weight: bold;">END</span>{{ character.attributes.END }} 7 (3d6)
                 </td>
             </tr>
             <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Computers </span>
-                    <span ng-repeat="(name, quantity) in character['Control Computers']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (CPU cycles: <span ng-bind="computerHash[name]['CPU']"></span>;
-                        max FTL: <span ng-bind="computerHash[name]['Max FTL']"></span>;
-                        checks: <span ng-bind="computerHash[name].Checks"></span>)
+                <td colspan="17" height="17" align="left"><span
+                        style="font-weight: bold;">INT</span>{{ character.attributes.END }} 8 (3d6) <span
+                        style="font-weight: bold;">LOG</span>{{ character.attributes.LOG }} 3 (2d6)<span
+                        style="font-weight: bold;"> WIL</span>{{ character.attributes.WIL }} 7 (3d6) <span
+                        style="font-weight: bold;">CHA</span>{{ character.attributes.CHA }} 3 (2d6) <span
+                        style="font-weight: bold;">LUC</span>{{ character.attributes.LUC }} 5 (2d6) <span
+                        style="font-weight: bold;">REP</span>{{ character.attributes.REP }} 4 (2d6)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd"><span
+                        style="font-weight: bold;">HEALTH</span> {{ character.derived.health }} <br
+                       >
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold;">MELEE DEFENSE</span>  {{ character.derived.meleeDefense }}  22;
+                    <span style="font-weight: bold;">RANGED DEFENSE</span>  {{ character.derived.rangedDefense }} 15;
+                    <span style="font-weight: bold;">MENTAL DEFENSE</span>  {{ character.derived.mentalDefense }}  11
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold;">SOAK</span>  {{ character.derived.soak}}  5 (studded leather);
+                    <span style="font-weight: bold;">VULN</span>   {{ character.derived.vuln }} -
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left"><span
+                        style="font-weight: bold;">INITIATIVE</span> {{ character.derived.initiative }} 3d6
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left"><span
+                        style="font-weight: bold;">PERCEPTION</span>  {{ character.derived.initiative }}  3d6
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left"><span
+                        style="font-weight: bold;">SPEED</span>  {{ character.derived.speed }} 4; <span
+                        style="font-weight: bold;">CLIMB</span> {{ character.derived.climb }} ; <span
+                        style="font-weight: bold;">JUMP</span> {{ character.derived.jump }}  14'/4'
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left">
+                    <span style="font-weight: bold;">CARRY</span>  {{ character.derived.carry}}  110lb
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold;">ACTIONS</span>  {{ character.derived.actions }}
+                    2
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold;">NATURAL DAMAGE</span>  {{ character.derived.naturalDamage }} 1d6+2
+                </td>
+            </tr>
+            <tr ng-repeat="w in character.weapons">
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold; font-style: italic;"> {{ w.name }}</span>
+                    {{ w.damage }}
+                    5d6 (1d6+2 slashing damage)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left">
+                    <span style="font-weight: bold;">Skills</span>
+                    <span ng-repeat="s for character.skills" style="font-style: italic;">
+                        <em>{{ skill.name }}</em> ( {{ skill.dice }} ),
                     </span>
                 </td>
             </tr>
             <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Power Plants</span>
-                    <span ng-repeat="(name, quantity) in character['Power Plant']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (CPU cycles: <span ng-bind="powerplantHash[name]['CPU']"></span>;
-                        max FTL: <span ng-bind="powerplantHash[name]['Max FTL']"></span>;
-                        checks: <span ng-bind="powerplantHash[name].Checks"></span>)
+                <td colspan="17" height="17" align="left">
+                    <span style="font-weight: bold;">Gear</span>
+                    {{ character.printEquipment() }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="17" height="17" align="left" >
+                    <span style="font-weight: bold;">EXPLOITS</span><br/>
+                    <span ng-repeat="e in character.exploits">
+                        <strong>{{ e.Exploit }}.</strong> {{ e.Benefits }}<br/>
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Sensors</span>
-                    <span ng-bind="character.sensor['Sensor Systems'] || 'none'"></span>
-                    (range <span ng-bind="character.sensor.Range || 0"></span>; check <span ng-bind="character.sensor.Checks || 0"></span>)
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
-                    <b>Engine &amp; Propulsion Data</b>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Subluminal</span>
-                      <span ng-repeat="(name, quantity) in character['Sub-luminal Engine']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (power: <span ng-bind="sublHash[name]['Power']"></span>;
-                        SPEED: <span ng-bind="calculateSublSpeed(name, quantity) | number:1"></span>;
-                        fuel efficiency: <span ng-bind="sublHash[name]['Fuel Eff']"></span>)
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">FTL</span>
-                    <span ng-if="character['FTL Engine'] === undefined || isEmpty('FTL Engine')">-</span>
-                      <span ng-repeat="(name, quantity) in character['FTL Engine']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (power: <span ng-bind="ftlHash[name]['Power']"></span>;
-                        FTL: <span ng-bind="calculateFtl(name, quantity) | number:1"></span>;
-                        fuel efficiency: <span ng-bind="ftlHash[name]['Fuel Eff']"></span>)
-                    <br>
-                    <span style="font-weight: bold;">Backup FTL</span>
-                     <span ng-if="character['Backup FTL Engine'] === undefined || isEmpty('Backup FTL Engine')">-</span>
-                     <span ng-repeat="(name, quantity) in character['Backup FTL Engine']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (power: <span ng-bind="ftlHash[name]['Power']"></span>;
-                        FTL: <span ng-bind="calculateFtl(name, quantity) | number:1"></span>;
-                        fuel efficiency: <span ng-bind="ftlHash[name]['Fuel Eff']"></span>)
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Operational Range</span>
-                    <span ng-bind="calculateOperationalRange()"></span> parsecs
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Defensive Data</b></td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Superstructure</span>
-                    <span ng-bind="calculateSuperstructure() || 'none'"></span>
-                    <span style="font-weight: bold;">DEFENSE</span>
-                    <span>{{calculateDefense() | number:0}}</span>
-                    <span style="font-weight: bold;">ELECTRONIC DEFENSE</span>
-                    <span ng-bind="calculateElectronicDefense()"></span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Armor</span>
-                    <span ng-bind="presentArmor() || 'none'"></span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Shields</span>
-                    <span ng-if="character['Deflector Shields'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Deflector Shields']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (power <span ng-bind="deflectorHash[name]['Power'] * quantity"></span>;
-                        SOAK <span ng-bind="calculateSoak(deflectorHash[name]['Power'], quantity)"></span>)
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Point Defenses</span>
-                    <span ng-if="character['Point Defenses'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Point Defenses']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (+{{pointDefensesHash[name]['DEFENSE'] * quantity/getNumericShipClass() | number:0}} vs. missiles and fighters, Aura: {{ pointDefensesHash[name]['Aura'] }})
-
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Weapons Data</b></td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                     <span ng-repeat="(name, quantity) in character['Weapon System']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>
-                        (range <span ng-bind="calculateWeaponRange(name)"></span>;
-                        damage <span ng-bind="weaponHash[name]['Damage']"></span>;
-                        attack <span ng-bind="weaponHash[name]['Attack']"></span>)<br/>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Facilities</b></td>
-            </tr>
-            <tr>
-                <td colspan="10" sdnum="2057;0;0" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Luxury</span>
-                    <span ng-bind="calculateLuxury() || 'none'"></span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="11" align="left" height="17" valign="bottom"><span style="font-weight: bold;">Facilities</span>
-                    <span ng-repeat="(name, quantity) in character['Facilities']">
-                        <span ng-bind="name"></span> (<span ng-bind="quantity"></span>),
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>General Systems</b></td>
-            </tr>
-            <tr>
-                <td colspan="12" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Fueling</span>
-                    <span ng-if="character['Fueling'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Fueling']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="12" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Electronic Warfare</span>
-                    <span ng-if="character['Electronic Warfare'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Electronic Warfare']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="12" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Tractor Beams</span>
-                    <span ng-if="character['Tractor Beam'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Tractor Beam']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="12" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Cloaking Device</span>
-                    <span ng-if="character['Cloaking'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Cloaking']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="12" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Engineering</span>
-                    <span ng-if="character['Engine Mods'] === undefined">-</span>
-                     <span ng-repeat="(name, quantity) in character['Engine Mods']">
-                        <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom"><b>Hangars & Bays</b></td>
-            </tr>
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Shuttles</span>
-                    {{countShuttles()}} (
-                        <span ng-repeat="(name, quantity) in character['Hangar Bay Shuttle']">
-                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                        </span>
-                    )
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Fighters</span>
-                    {{countFighters()}} (
-                        <span ng-repeat="(name, quantity) in character['Hangar Bay Fighter']">
-                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                        </span>
-                    )
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="10" align="left" height="17" valign="bottom">
-                    <span style="font-weight: bold;">Vehicles</span>
-                    {{countVehicles()}} (
-                        <span ng-repeat="(name, quantity) in character['Hangar Bay Vehicle']">
-                           <span ng-bind="quantity"></span>x <span ng-bind="name"></span>,
-                        </span>
-                    )
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="10" align="left" height="17" bgcolor="#dddddd" valign="bottom">
-                    <b>Market Value {{ totalCost() }} MCr</b>
                 </td>
             </tr>
             </tbody>
         </table>
+       
         <div class="well">
-            {{ character['description'] }}
+            <p>{{ character.description }}</p>
+            <p>{{ character.printCareers() }}. <strong>Age {{ character.age }}</strong></p>
         </div>
     </div>
 
