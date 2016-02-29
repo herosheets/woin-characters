@@ -5,59 +5,20 @@ angular.module('woin-character')
   .controller('CharacterViewCtrl', function CharacterViewCtrl($scope) {
     $scope = $scope.$parent;
 
-    $scope.calculateWeight = function(weightString) {
-      try {
-        var split = weightString.split(',').join('').split('-');
-        var min = parseInt(split[0].trim());
-        var max = parseInt(split[1].trim());
-
-        var diff = max - min;
-
-        var currentSpace = $scope.currentSpace();
-        var maxSpace = $scope.maxSpace();
-
-        return min + (currentSpace/maxSpace * diff);
-      } catch(e) {
-        return 0;
-      }
-
-    };
-
-      $scope.calculateCrew = function() {
-        return $scope.getTotalCrew();
+      var calcStatsForCareer = function(career) {
+        var careerStats = _.reduce(career.Attributes.split(','), function(prev, stat) {
+            var statSplit = stat.split(':');
+            prev[statSplit[0].toUpperCase()] = +statSplit[1];
+            return prev;
+        }, {});
+        return careerStats;
       };
 
-      $scope.calculateWeaponRange = function(weaponName) {
-        return Math.min($scope.weaponHash[weaponName]['Range'], $scope.ship.sensor.Range);
-      };
-
-      $scope.countShuttles = function() {
-          var hangarBay = $scope.ship['Hangar Bay Shuttle'];
-          if(!hangarBay) return 0;
-          return _.reduce(_.keys(hangarBay), function(prev, cur) {
-              return prev + (hangarBay[cur] * $scope.hangarHash[cur].Craft);
+      $scope.getStatForCharacter = function(stat) {
+          var base = 0;
+          base += _.reduce($scope.character.careers, function(prev, cur) {
+              return prev + calcStatsForCareer(cur)[stat] || 0;
           }, 0);
+          return base;
       };
-
-      $scope.countFighters = function() {
-          var hangarBay = $scope.ship['Hangar Bay Fighter'];
-          if(!hangarBay) return 0;
-          return _.reduce(_.keys(hangarBay), function(prev, cur) {
-              return prev + (hangarBay[cur] * $scope.hangarHash[cur].Craft);
-          }, 0);
-      };
-
-      $scope.countVehicles = function() {
-          var hangarBay = $scope.ship['Hangar Bay Vehicle'];
-          if(!hangarBay) return 0;
-          return _.reduce(_.keys(hangarBay), function(prev, cur) {
-              return prev + (hangarBay[cur] * $scope.hangarHash[cur].Craft);
-          }, 0);
-      };
-
-      $scope.getNumericShipClass = function() {
-        if(!$scope.ship.hull) return;
-        return Number.fromRoman($scope.ship.hull.Class);
-      };
-
   });

@@ -42,20 +42,20 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">STR</span>{{ character.attributes.STR }} 4 (2d6) <span
-                        style="font-weight: bold;">AGI</span>{{ character.attributes.AGI }} 7 (3d6) <span
-                        style="font-weight: bold;">END</span>{{ character.attributes.END }} 7 (3d6)
+                <td colspan="17" height="17" align="left">
+                    <span style="font-weight: bold;">STR</span> {{ getStatForCharacter('STR') }} (2d6)
+                    <span style="font-weight: bold;">AGI</span> {{ getStatForCharacter('AGI') }} (3d6)
+                    <span style="font-weight: bold;">END</span> {{ getStatForCharacter('END') }} (3d6)
                 </td>
             </tr>
             <tr>
-                <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">INT</span>{{ character.attributes.END }} 8 (3d6) <span
-                        style="font-weight: bold;">LOG</span>{{ character.attributes.LOG }} 3 (2d6)<span
-                        style="font-weight: bold;"> WIL</span>{{ character.attributes.WIL }} 7 (3d6) <span
-                        style="font-weight: bold;">CHA</span>{{ character.attributes.CHA }} 3 (2d6) <span
-                        style="font-weight: bold;">LUC</span>{{ character.attributes.LUC }} 5 (2d6) <span
-                        style="font-weight: bold;">REP</span>{{ character.attributes.REP }} 4 (2d6)
+                <td colspan="17" height="17" align="left">
+                    <span style="font-weight: bold;">INT</span> {{ getStatForCharacter('INT') }} (3d6)
+                    <span style="font-weight: bold;">LOG</span> {{ getStatForCharacter('LOG') }} (2d6)
+                    <span style="font-weight: bold;">WIL</span> {{ getStatForCharacter('WIL') }} (3d6)
+                    <span style="font-weight: bold;">CHA</span> {{ getStatForCharacter('CHA') }} (2d6)
+                    <span style="font-weight: bold;">LUC</span> {{ getStatForCharacter('LUC') }} (2d6)
+                    <span style="font-weight: bold;">REP</span> {{ getStatForCharacter('REP') }} (2d6)
                 </td>
             </tr>
             <tr>
@@ -120,7 +120,7 @@
             <tr>
                 <td colspan="17" height="17" align="left">
                     <span style="font-weight: bold;">Skills</span>
-                    <span ng-repeat="s for character.skills" style="font-style: italic;">
+                    <span ng-repeat="s in character.skills" style="font-style: italic;">
                         <em>{{ skill.name }}</em> ( {{ skill.dice }} ),
                     </span>
                 </td>
