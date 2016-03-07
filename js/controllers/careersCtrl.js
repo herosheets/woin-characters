@@ -4,6 +4,11 @@ angular = require('angular');
 angular.module('woin-character')
   .controller('CareersCtrl', function CareersCtrl($scope) {
 
+    var deleteFromArray = function(array, c) {
+      var index = array.indexOf(c);
+      array.splice(index, 1);
+    };
+
     $scope.localCareers = [];
     angular.copy($scope.careers, $scope.localCareers);
     console.log("Copy:");
@@ -32,10 +37,6 @@ angular.module('woin-character')
       deleteFromArray($scope.character.careers, c);
     };
 
-    var deleteFromArray = function(array, c) {
-      var index = array.indexOf(c);
-      array.splice(index, 1);
-    };
 
     $scope.printAttributes = function(attributeString) {
       var attributes = attributeString.split(',');
