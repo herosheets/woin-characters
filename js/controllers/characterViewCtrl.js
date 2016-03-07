@@ -30,15 +30,18 @@ angular.module('woin-character')
         return base;
     };
 
-    $scope.getDiceForCharacter = function(stats) {
+    $scope.getDiceValueForCharacter = function(stats) {
         if(!_.isArray(stats)) stats = [stats];
 
         var base = 0;
         base += _.reduce(stats, function(prev, cur) {
-          return prev + getDiceForStat($scope.getStatForCharacter(cur));
+            return prev + getDiceForStat($scope.getStatForCharacter(cur));
         }, 0);
+        return base;
+    };
 
-        return base+'d6';
+    $scope.getDiceForCharacter = function(stats) {
+        return $scope.getDiceValueForCharacter(stats)+'d6';
     };
 
     $scope.calculateJump = function() {
