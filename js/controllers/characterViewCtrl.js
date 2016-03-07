@@ -14,12 +14,31 @@ angular.module('woin-character')
       return careerStats;
     };
 
+    var getDiceForStat = function(stat) {
+        if(stat < 3)  return 1;
+        if(stat < 6)  return 2;
+        if(stat < 10) return 3;
+        if(stat < 15) return 4;
+        return 5;
+    };
+
     $scope.getStatForCharacter = function(stat) {
-        var base = 0;
+        var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
         base += _.reduce($scope.character.careers, function(prev, cur) {
             return prev + calcStatsForCareer(cur)[stat] || 0;
         }, 0);
         return base;
+    };
+
+    $scope.getDiceForCharacter = function(stats) {
+        if(!_.isArray(stats)) stats = [stats];
+
+        var base = 0;
+        base += _.reduce(stats, function(prev, cur) {
+          return prev + getDiceForStat($scope.getStatForCharacter(cur));
+        }, 0);
+
+        return base+'d6';
     };
 
     $scope.calculateJump = function() {

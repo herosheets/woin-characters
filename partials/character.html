@@ -43,19 +43,19 @@
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left">
-                    <span style="font-weight: bold;">STR</span> {{ getStatForCharacter('STR') }} (2d6)
-                    <span style="font-weight: bold;">AGI</span> {{ getStatForCharacter('AGI') }} (3d6)
-                    <span style="font-weight: bold;">END</span> {{ getStatForCharacter('END') }} (3d6)
+                    <span style="font-weight: bold;">STR</span> {{ getStatForCharacter('STR') }} ({{ getDiceForCharacter('STR') }})
+                    <span style="font-weight: bold;">AGI</span> {{ getStatForCharacter('AGI') }} ({{ getDiceForCharacter('AGI') }})
+                    <span style="font-weight: bold;">END</span> {{ getStatForCharacter('END') }} ({{ getDiceForCharacter('END') }})
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left">
-                    <span style="font-weight: bold;">INT</span> {{ getStatForCharacter('INT') }} (3d6)
-                    <span style="font-weight: bold;">LOG</span> {{ getStatForCharacter('LOG') }} (2d6)
-                    <span style="font-weight: bold;">WIL</span> {{ getStatForCharacter('WIL') }} (3d6)
-                    <span style="font-weight: bold;">CHA</span> {{ getStatForCharacter('CHA') }} (2d6)
-                    <span style="font-weight: bold;">LUC</span> {{ getStatForCharacter('LUC') }} (2d6)
-                    <span style="font-weight: bold;">REP</span> {{ getStatForCharacter('REP') }} (2d6)
+                    <span style="font-weight: bold;">INT</span> {{ getStatForCharacter('INT') }} ({{ getDiceForCharacter('INT') }})
+                    <span style="font-weight: bold;">LOG</span> {{ getStatForCharacter('LOG') }} ({{ getDiceForCharacter('LOG') }})
+                    <span style="font-weight: bold;">WIL</span> {{ getStatForCharacter('WIL') }} ({{ getDiceForCharacter('WIL') }})
+                    <span style="font-weight: bold;">CHA</span> {{ getStatForCharacter('CHA') }} ({{ getDiceForCharacter('CHA') }})
+                    <span style="font-weight: bold;">LUC</span> {{ getStatForCharacter('LUC') }} ({{ getDiceForCharacter('LUC') }})
+                    <span style="font-weight: bold;">REP</span> {{ getStatForCharacter('REP') }} ({{ getDiceForCharacter('REP') }})
                 </td>
             </tr>
             <tr>
@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">INITIATIVE</span> {{ character.derived.initiative }} 3d6
+                        style="font-weight: bold;">INITIATIVE</span> {{ character.derived.initiative }} ({{ getDiceForCharacter(['INT', 'INT']) }})
                 </td>
             </tr>
             <tr>
@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">SPEED</span>  {{ character.derived.speed }} 4; <span
+                        style="font-weight: bold;">SPEED</span>  {{ character.derived.speed }} ({{ getDiceForCharacter(['STR', 'AGI']) }}); <span
                         style="font-weight: bold;">CLIMB</span> {{ character.derived.climb }} ; <span
                         style="font-weight: bold;">JUMP</span> {{ calculateJump() }}
                 </td>
