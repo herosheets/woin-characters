@@ -23,7 +23,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in origins">
-        <td><input type="radio" ng-value="item.Origin" ng-model="character.origin"></td>
+        <td><input type="radio" ng-value="item" ng-model="character.origin"></td>
         <td>{{ item.Origin }}</td>
         <td>{{ item.Prerequisites }}</td>
         <td>{{ printAttributes(item.Attributes) }}</td>

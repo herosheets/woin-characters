@@ -169,7 +169,7 @@ var tabs = [
   {heading: 'Exploits', route: 'main.exploits'},
   {heading: 'Homeland', route: 'main.homeland'},
   {heading: 'Hook', route: 'main.hook'},
-  {heading: 'Magic', route: 'main.magic'},
+  {heading: 'Skills', route: 'main.skills'},
   {heading: 'Origin', route: 'main.origin'},
   {heading: 'Psionics', route: 'main.psionics'},
   {heading: 'Race', route: 'main.race'},
@@ -193,7 +193,7 @@ angular.module('woin-character')
     // initialize data
     $scope.toggleSidenav = Sidenav.toggle;
     $scope.tabs = tabs;
-    $scope.character = {name: "", description: "", career: [] };
+    $scope.character = {name: "", description: "", career: [], skills: [] };
 
     Components.loadCsvData($scope);
 

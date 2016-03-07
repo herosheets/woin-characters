@@ -91,6 +91,12 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 					content: { controller: "TraitsCtrl", templateUrl: '/partials/traits.html' }
 				}
 			})
+			.state('main.skills', {
+				url: 'skills',
+				views: {
+					content: { controller: "SkillsCtrl", templateUrl: '/partials/skills.html' }
+				}
+			})
 			.state('main.derived', {
 				url: 'derived',
 				views: {
@@ -128,6 +134,7 @@ require('components');
 require('characterCtrl');
 require('characterViewCtrl');
 require('raceCtrl');
+require('skillsCtrl');
 require('homelandCtrl');
 require('originCtrl');
 require('careersCtrl');

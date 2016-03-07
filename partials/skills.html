@@ -1,0 +1,46 @@
+<h2>Skills</h2>
+<p class="explainer">
+    Choose your skills.
+</p>
+<p ng-if="character.homeworld">
+    Bonus skill: {{ character.homeworld['Bonus Skill'] }}
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Skill Name</th>
+        <th>Rank</th>
+        <th>Dice Pool</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="c in character.skills">
+        <td>{{ c.name }}</td>
+        <td>{{ c.rank }}</td>
+        <td>{{ c.dicePool() }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Source</th>
+        <th>Skill Choices</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="c in skillChoices">
+        <td>{{ c.sourceType }}: {{ c.sourceName }}</td>
+        <td>
+            <select
+                    ng-model="c.choice"
+                    ng-change="rebuildSkills()"
+                    ng-options="choize for choize in c.choices">
+            </select>
+
+        </td>
+    </tr>
+    </tbody>
+</table>

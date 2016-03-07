@@ -91,12 +91,12 @@
                 <td colspan="17" height="17" align="left"><span
                         style="font-weight: bold;">SPEED</span>  {{ character.derived.speed }} 4; <span
                         style="font-weight: bold;">CLIMB</span> {{ character.derived.climb }} ; <span
-                        style="font-weight: bold;">JUMP</span> {{ character.derived.jump }}  14'/4'
+                        style="font-weight: bold;">JUMP</span> {{ calculateJump() }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left">
-                    <span style="font-weight: bold;">CARRY</span>  {{ character.derived.carry}}  110lb
+                    <span style="font-weight: bold;">CARRY</span>  {{ calculateCarry() }}  110lb
                 </td>
             </tr>
             <tr>
@@ -121,7 +121,7 @@
                 <td colspan="17" height="17" align="left">
                     <span style="font-weight: bold;">Skills</span>
                     <span ng-repeat="s in character.skills" style="font-style: italic;">
-                        <em>{{ skill.name }}</em> ( {{ skill.dice }} ),
+                        <em>{{ s.name }}</em> ( {{ s.dicePool() }} ),
                     </span>
                 </td>
             </tr>
@@ -144,7 +144,7 @@
        
         <div class="well">
             <p>{{ character.description }}</p>
-            <p>{{ character.printCareers() }}. <strong>Age {{ character.age }}</strong></p>
+            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }}</p>
         </div>
     </div>
 
