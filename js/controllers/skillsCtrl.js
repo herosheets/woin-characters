@@ -8,6 +8,9 @@ angular.module('woin-character')
       artistic: [
         "painting", "sculpting", "calligraphy", "pottery", "poetry", "literature", "film-making", "photography", "printmaking", "modelling"
       ],
+      combat: [
+        "fighting"
+      ],
       scientific: [
         "physics",
         "astronomy", "chemistry", "ecology", "oceanography", "geology", "meteorology", "biology", "zoology", "botany", "mathematics", "archaeology", "criminology", "economics", "psychology", "sociology", "medicine", "genetics", "nanotechnology", "xenology", "climatology"],
@@ -28,7 +31,7 @@ angular.module('woin-character')
           choices.push(trimmed);
         }
       });
-      return _.flatten(choices);
+      return _.compact(_.flatten(choices));
     }
 
     var newChoice = function(options, source, name) {
@@ -108,11 +111,15 @@ angular.module('woin-character')
       $scope.character.skills = [];
     };
 
+    if(_.isUndefined($scope.character.skillChoices)) {
+      $scope.character.skillChoices = {};
+    }
+
     $scope.rebuildSkills = function() {
       $scope.character.skills = [];
       angular.forEach($scope.skillChoices, function(choice) {
-        if (choice.choice !== undefined) {
-          upgradeSkill(choice.choice, $scope.character.skills);
+        if ($scope.character.skillChoices[choice.sourceName] !== undefined) {
+          upgradeSkill($scope.character.skillChoices[choice.sourceName], $scope.character.skills);
         }
       });
       addBonusSkill();

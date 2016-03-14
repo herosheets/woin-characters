@@ -35,7 +35,7 @@
         <td>{{ c.sourceType }}: {{ c.sourceName }}</td>
         <td>
             <select
-                    ng-model="c.choice"
+                    ng-model="character.skillChoices[c.sourceName]"
                     ng-change="rebuildSkills()"
                     ng-options="choize for choize in c.choices">
             </select>
