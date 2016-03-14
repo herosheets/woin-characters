@@ -66,9 +66,9 @@
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left" bgcolor="#dddddd">
-                    <span style="font-weight: bold;">MELEE DEFENSE</span>  {{ character.derived.meleeDefense }}  22;
-                    <span style="font-weight: bold;">RANGED DEFENSE</span>  {{ character.derived.rangedDefense }} 15;
-                    <span style="font-weight: bold;">MENTAL DEFENSE</span>  {{ character.derived.mentalDefense }}  11
+                    <span style="font-weight: bold;">MELEE DEFENSE</span>  {{ calculateDefense('MELEE') }}
+                    <span style="font-weight: bold;">RANGED DEFENSE</span>  {{ calculateDefense('RANGED') }}
+                    <span style="font-weight: bold;">MENTAL DEFENSE</span>  {{ calculateDefense('MENTAL') }}
                 </td>
             </tr>
             <tr>
@@ -79,35 +79,34 @@
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">INITIATIVE</span> {{ character.derived.initiative }} ({{ getDiceForCharacter(['INT', 'INT']) }})
+                        style="font-weight: bold;">INITIATIVE</span> {{ getDiceForCharacter(['INT', 'INT']) }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">PERCEPTION</span>  {{ character.derived.initiative }}  3d6
+                        style="font-weight: bold;">PERCEPTION</span>  {{ calculatePerception() }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left"><span
-                        style="font-weight: bold;">SPEED</span>  {{ character.derived.speed }} ({{ getDiceForCharacter(['STR', 'AGI']) }}); <span
-                        style="font-weight: bold;">CLIMB</span> {{ character.derived.climb }} ; <span
+                        style="font-weight: bold;">SPEED</span>  {{ calculateSpeed() }} <span
+                        style="font-weight: bold;">CLIMB</span> {{ calculateClimb() }} <span
                         style="font-weight: bold;">JUMP</span> {{ calculateJump() }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left">
-                    <span style="font-weight: bold;">CARRY</span>  {{ calculateCarry() }}  110lb
+                    <span style="font-weight: bold;">CARRY</span>  {{ calculateCarry() }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left" bgcolor="#dddddd">
-                    <span style="font-weight: bold;">ACTIONS</span>  {{ character.derived.actions }}
-                    2
+                    <span style="font-weight: bold;">ACTIONS</span>  {{ calculateActions() }}
                 </td>
             </tr>
             <tr>
                 <td colspan="17" height="17" align="left" bgcolor="#dddddd">
-                    <span style="font-weight: bold;">NATURAL DAMAGE</span>  {{ character.derived.naturalDamage }} 1d6+2
+                    <span style="font-weight: bold;">NATURAL DAMAGE</span>  {{ calculateNaturalDamage() }}
                 </td>
             </tr>
             <tr ng-repeat="w in character.weapons">

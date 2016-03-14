@@ -193,7 +193,21 @@ angular.module('woin-character')
     // initialize data
     $scope.toggleSidenav = Sidenav.toggle;
     $scope.tabs = tabs;
-    $scope.character = {name: "", description: "", career: [], skills: [] };
+    $scope.character = {
+      name: "",
+      description: "",
+      career: [],
+      skills: [],
+      getSkillRanks: function(skillName) {
+        var ranks = 0;
+        angular.forEach(this.skills, function(s) {
+          if(s.name == skillName) {
+            ranks += s.rank;
+          }
+        });
+        return ranks;
+      }
+    };
 
     Components.loadCsvData($scope);
 
