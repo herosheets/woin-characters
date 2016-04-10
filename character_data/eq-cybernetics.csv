@@ -1,0 +1,3 @@
+Enhancement,Type,Cost,Effect
+Artificial Arm,Major,100000,"dice:STRENGTH:1d6"
+Digiclaws,Minor,100000,"damage:natural:1d6"

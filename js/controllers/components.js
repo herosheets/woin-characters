@@ -24,7 +24,30 @@ angular.module('woin-character').service('Components',
         "Strike the Soul,4,Daichin Stance [STR],check,,\"Spend one action focusing your CHI, striking beyond armor and scale, at the core of your target. Ignore SOAK equal to twice your CHI attribute for any unarmed attacks you make until the end of your next turn.\"\n"+
         "Attune,5,Daichin Stance [STR],check,,\"Spend two actions focusing your CHI, bringing your mind and body into perfect alignment. Increase your PHYSICAL DEFENSEs and MENTAL DEFENSE to the highest of these values for a short duration.\"";
       var derived_stats = 'testempty';
-      var equipment = 'testempty';
+      var eqGear =
+        "Item,Cost,Weight,Availability\n"+
+        "'Adhesive, instant',30,0.1,6A\n"+
+        "Backpack,4,2,2A";
+      var eqArmor =
+        "Armor,Category,SOAK,DEFENSE,Cost,Type,Weight,Vulnerable\n"+
+        "Cloth,Archaic Armor,2,0,20,Light,8,\"Blunt, Fire\"\n"+
+        "Full Plate,Archaic Armor,10,-4,2000,Heavy,70,Electricity\n"+
+        "\"Small, wooden\",Shield,,+2,40,,6,\n"+
+        "\"Four-mirror armor\",Eastern Armor,6,0,45,Medium,45,";
+      var eqWeapons =
+        "Weapon,Damage,Type,Range,Cost,Size,Weight,Availability,Special\n"+
+        "\"Axe, battleaxe\",3d6,Slashing,,10,M,5,1A,\n"+
+        "\"Axe, handaxe\",2d6,Slashing,,4,S,2,1A,Thrown\n"+
+        "\"Club\",2d6,Blunt,,1,M,3,0A,\n"+
+        "\"Bow, longbow\",2d6+2,Piercing,18,70,L,4,2A,";
+      var eqCybernetics =
+        "Enhancement,Type,Cost,Effect\n"+
+        "Artificial Arm,Major,100000,\"dice:STRENGTH:1d6\"\n"+
+        "Digiclaws,Minor,100000,\"damage:natural:1d6\"";
+      var eqMounts =
+        "Automobile,Year,Cost,AdjPrice,Upgrades,Occupants,SPEED,ACCEL,HANDLING,HEALTH,SOAK,DEFENSE\n"+
+        "Aston Martin DB5, 1963, 7000, 43400,10,2,14,3,C,57,5,10\n"+
+        "Pontiac Firebird Trans Am, 1982,10396,44703,10,2,12,2,C,57,5,10";
       var exploits =
         "Exploit,prereq,Benefits\n"+
         "180 hammerhead,skill:piloting;attribute:agi:8;,\"A starship is rotated 180 degrees while continuing its momentum, enabling it to face and fire at pursuers.\"\n"+
@@ -70,7 +93,13 @@ angular.module('woin-character').service('Components',
         scope.careers = [];
         scope.chis = [];
         scope.derived_stats = [];
-        scope.equipment = [];
+        scope.equipment = {
+          gear: [],
+          armor: [],
+          weapons: [],
+          mounts: [],
+          cybernetics: []
+        };
         scope.exploits = [];
         scope.homelands = [];
         scope.origins = [];
@@ -83,6 +112,66 @@ angular.module('woin-character').service('Components',
         var getUrl = function (file) {
           return './character_data/' + file + '.csv';
         };
+
+        Papa.parse(doDownload ? getUrl('eq-gear') : eqGear, {
+          header: true,
+          download: doDownload,
+          dynamicTyping: true,
+          step: function (row) {
+            scope.equipment.gear.push(row.data[0]);
+          },
+          complete: function () {
+            console.log("Gear Loaded");
+          }
+        });
+
+        Papa.parse(doDownload ? getUrl('eq-armor') : eqArmor, {
+          header: true,
+          download: doDownload,
+          dynamicTyping: true,
+          step: function (row) {
+            scope.equipment.armor.push(row.data[0]);
+          },
+          complete: function () {
+            console.log("Armor Loaded");
+          }
+        });
+
+        Papa.parse(doDownload ? getUrl('eq-cybernetics') : eqCybernetics, {
+          header: true,
+          download: doDownload,
+          dynamicTyping: true,
+          step: function (row) {
+            scope.equipment.cybernetics.push(row.data[0]);
+          },
+          complete: function () {
+            console.log("Cybernetics Loaded");
+          }
+        });
+
+        Papa.parse(doDownload ? getUrl('eq-mounts') : eqMounts, {
+          header: true,
+          download: doDownload,
+          dynamicTyping: true,
+          step: function (row) {
+            scope.equipment.mounts.push(row.data[0]);
+          },
+          complete: function () {
+            console.log("Mounts Loaded");
+          }
+        });
+
+        Papa.parse(doDownload ? getUrl('eq-weapons') : eqWeapons, {
+          header: true,
+          download: doDownload,
+          dynamicTyping: true,
+          step: function (row) {
+            scope.equipment.weapons.push(row.data[0]);
+          },
+          complete: function () {
+            console.log("Weapons Loaded");
+          }
+        });
 
         Papa.parse(doDownload ? getUrl('careers') : careers, {
           header: true,
@@ -144,23 +233,6 @@ angular.module('woin-character').service('Components',
           },
           complete: function () {
             console.log("Derived Stats Loaded");
-          }
-        });
-
-        Papa.parse(doDownload ? getUrl('equipment') : equipment, {
-          header: true,
-          download: doDownload,
-          dynamicTyping: true,
-          step: function (row) {
-            var KEY = 'Equipment'
-            scope.equipment.push(row.data[0]);
-            scope.equipmentHash = {};
-            _.each(scope.equipment, function (item) {
-              scope.equipmentHash[item[KEY]] = item;
-            });
-          },
-          complete: function () {
-            console.log("Equipment Loaded");
           }
         });
 

@@ -103,10 +103,34 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 					content: { controller: "DerivedStatsCtrl", templateUrl: '/partials/derived.html' }
 				}
 			})
-			.state('main.equipment', {
-				url: 'equipment',
+			.state('main.eq-armor', {
+				url: 'eq-armor',
 				views: {
-					content: { controller: "EquipmentCtrl", templateUrl: '/partials/equipment.html' }
+					content: { controller: "EquipmentArmorCtrl", templateUrl: '/partials/eq-armor.html' }
+				}
+			})
+			.state('main.eq-cybernetics', {
+				url: 'eq-cybernetics',
+				views: {
+					content: { controller: "EquipmentCyberneticsCtrl", templateUrl: '/partials/eq-cybernetics.html' }
+				}
+			})
+			.state('main.eq-gear', {
+				url: 'eq-gear',
+				views: {
+					content: { controller: "EquipmentGearCtrl", templateUrl: '/partials/eq-gear.html' }
+				}
+			})
+			.state('main.eq-mounts', {
+				url: 'eq-mounts',
+				views: {
+					content: { controller: "EquipmentMountsCtrl", templateUrl: '/partials/eq-mounts.html' }
+				}
+			})
+			.state('main.eq-weapons', {
+				url: 'eq-weapons',
+				views: {
+					content: { controller: "EquipmentWeaponsCtrl", templateUrl: '/partials/eq-weapons.html' }
 				}
 			})
 			.state('main.psionics', {

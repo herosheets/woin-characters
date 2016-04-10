@@ -1,0 +1,5 @@
+Weapon,Damage,Type,Range,Cost,Size,Weight,Availability,Special
+"Axe, battleaxe",3d6,Slashing,,10,M,5,1A,
+"Axe, handaxe",2d6,Slashing,,4,S,2,1A,Thrown
+"Club",2d6,Blunt,,1,M,3,0A,
+"Bow, longbow",2d6+2,Piercing,18,70,L,4,2A,

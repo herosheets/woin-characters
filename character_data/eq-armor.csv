@@ -1,0 +1,5 @@
+Armor,Category,SOAK,DEFENSE,Cost,Type,Weight,Vulnerable
+Cloth,Archaic Armor,2,0,20,Light,8,"Blunt, Fire"
+Full Plate,Archaiic Armor,10,-4,2000,Heavy,70,Electricity
+"Small, wooden",Shield,,+2,40,,6,
+"Four-mirror armor",Eastern Armor,6,0,45,Medium,45,

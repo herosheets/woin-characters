@@ -1,0 +1,34 @@
+<h2>Equipment - Armor
+</h2>
+<p class="explainer">
+   Choose your armor
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>SOAK</th>
+        <th>DEFENSE</th>
+        <th>Cost</th>
+        <th>Type</th>
+        <th>Weight</th>
+        <th>Vulnerable</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in armor">
+        <td><input type="radio" ng-value="item" ng-model="character.equipment.armor"></td>
+        <td>{{item.Armor}}</td>
+        <td>{{item.Category}}</td>
+        <td>{{item.SOAK}}</td>
+        <td>{{item.DEFENSE}}</td>
+        <td>{{item.Cost}} gp</td>
+        <td>{{item.Type}} </td>
+        <td>{{item.Weight}} lbs</td>
+        <td>{{item.Vulnerable}}</td>
+    </tr>
+    </tbody>
+</table>

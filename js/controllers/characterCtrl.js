@@ -173,6 +173,11 @@ var tabs = [
   {heading: 'Origin', route: 'main.origin'},
   {heading: 'Psionics', route: 'main.psionics'},
   {heading: 'Race', route: 'main.race'},
+  {heading: 'Equipment - Gear', route: 'main.eq-gear'},
+  {heading: 'Equipment - Armor', route: 'main.eq-armor'},
+  {heading: 'Equipment - Weapons', route: 'main.eq-weapons'},
+  {heading: 'Equipment - Cybernetics', route: 'main.eq-cybernetics'},
+  {heading: 'Equipment - Mounts & Vehicles', route: 'main.eq-mounts'},
   {heading: 'Your Character', route: 'main.character'}
 ];
 
@@ -198,6 +203,29 @@ angular.module('woin-character')
       description: "",
       career: [],
       skills: [],
+      equipment: {
+        gear: [],
+        armor: {},
+        weapon: {},
+        cybernetics: [],
+        mounts: []
+      },
+      getEquipmentCost: function() {
+        var cost = 0;
+        var types = ["gear", "cybernetics", "mounts"];
+        angular.forEach(types, function(t) {
+          angular.forEach(this.equipment[t], function(e) {
+            cost = cost + e.cost;
+          });
+        });
+        if (this.equipment.armor !== {}) {
+          cost = cost + this.equipment.armor.cost;
+        }
+        if (this.equipment.weapon !== {}) {
+          cost = cost + this.equipment.weapon.cost;
+        }
+        return cost;
+      },
       getSkillRanks: function(skillName) {
         var ranks = 0;
         angular.forEach(this.skills, function(s) {
