@@ -3,42 +3,29 @@ angular = require('angular');
 
 angular.module('woin-character')
   .controller('EquipmentArmorCtrl', function EquipmentCtrl($scope) {
-    $scope.armor = $scope.$parent.equipment.armor;
-
+      $scope.armor = $scope.$parent.equipment.armor;
   });
 
 angular.module('woin-character')
   .controller('EquipmentWeaponsCtrl', function EquipmentCtrl($scope) {
-
-    var KEY = $scope.KEY = 'Equipment';
-    if(!$scope.ship[KEY]) $scope.ship[KEY] = {};
-
-    $scope.generalHash = $scope.$parent.generalHash;
+      $scope.weapons = $scope.$parent.equipment.weapons;
   });
 
 angular.module('woin-character')
   .controller('EquipmentGearCtrl', function EquipmentCtrl($scope) {
+      $scope.gear = $scope.$parent.equipment.gear;
 
-    var KEY = $scope.KEY = 'Equipment';
-    if(!$scope.ship[KEY]) $scope.ship[KEY] = {};
-
-    $scope.generalHash = $scope.$parent.generalHash;
+      var KEY = $scope.KEY = 'Gear';
   });
 
 angular.module('woin-character')
   .controller('EquipmentCyberneticsCtrl', function EquipmentCtrl($scope) {
-
-    var KEY = $scope.KEY = 'Equipment';
-    if(!$scope.ship[KEY]) $scope.ship[KEY] = {};
-
-    $scope.generalHash = $scope.$parent.generalHash;
+      $scope.cybernetics = $scope.$parent.equipment.cybernetics;
+      var KEY = $scope.KEY = 'Cybernetics';
   });
 
 angular.module('woin-character')
   .controller('EquipmentMountsCtrl', function EquipmentCtrl($scope) {
-
-    var KEY = $scope.KEY = 'Equipment';
-    if(!$scope.ship[KEY]) $scope.ship[KEY] = {};
-
-    $scope.generalHash = $scope.$parent.generalHash;
+      $scope.mounts = $scope.$parent.equipment.mounts;
+      var KEY = $scope.KEY = 'Mounts';
   });

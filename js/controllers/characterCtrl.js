@@ -472,6 +472,7 @@ angular.module('woin-character')
 
     $scope.incrementItem = function (KEY, itemKey, value) {
       if(!value) value = 1;
+      if(!$scope.character[KEY]) $scope.character[KEY] = {};
       if (!$scope.character[KEY][itemKey]) $scope.character[KEY][itemKey] = 0;
       $scope.character[KEY][itemKey] += value;
 

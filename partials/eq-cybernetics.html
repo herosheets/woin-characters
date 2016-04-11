@@ -1,1 +1,53 @@
+<h2>Equipment - Cybernetics
+</h2>
+<p class="explainer">
+    Choose your cybernetics
+</p>
 
+<h3>Your Cybernetics</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Effect</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(name, count) in character[KEY]">
+        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+        <td>{{count}}</td>
+        <td>{{name}}</td>
+        <td>{{cyberneticHash[name].Type}}</td>
+        <td>{{cyberneticHash[name].Cost}} gp</td>
+        <td>{{cyberneticHash[name].Effect}}</td>
+    </tr>
+    <tr ng-if="isEmpty(KEY)">
+        <td colspan="6" class="text-center">No cybernetics selected</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Choose Cybernetics</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Effect</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cybernetics">
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Enhancement)">+</button></td>
+        <td>{{item.Enhancement}}</td>
+        <td>{{item.Type}}</td>
+        <td>{{item.Cost}} gp</td>
+        <td>{{item.Effect}}</td>
+    </tr>
+    </tbody>
+</table>

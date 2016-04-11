@@ -107,6 +107,8 @@ angular.module('woin-character').service('Components',
         scope.races = [];
         scope.traints = [];
         scope.generalHash = {};
+        scope.gearHash = {};
+        scope.cyberneticHash = {};
 
         var doDownload = location.hostname === 'characters.enworld.org';
         var getUrl = function (file) {
@@ -122,6 +124,10 @@ angular.module('woin-character').service('Components',
           },
           complete: function () {
             console.log("Gear Loaded");
+            var KEY = 'Item';
+            _.each(scope.equipment.gear, function (item) {
+              scope.gearHash[item[KEY]] = item;
+            });
           }
         });
 
@@ -146,6 +152,10 @@ angular.module('woin-character').service('Components',
           },
           complete: function () {
             console.log("Cybernetics Loaded");
+            var KEY = 'Enhancement';
+            _.each(scope.equipment.cybernetics, function (item) {
+              scope.cyberneticHash[item[KEY]] = item;
+            });
           }
         });
 
