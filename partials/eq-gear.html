@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="(name, count) in character[KEY]">
-        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>
         <td>{{count}}</td>
         <td>{{name}}</td>
         <td>{{gearHash[name].Cost}} gp</td>
@@ -44,7 +44,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in gear">
-        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Item)">+</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Item, 1, true)">+</button></td>
         <td>{{item.Item}}</td>
         <td>{{item.Cost}} gp</td>
         <td>{{item.Weight}} lbs</td>

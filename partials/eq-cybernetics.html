@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="(name, count) in character[KEY]">
-        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>
         <td>{{count}}</td>
         <td>{{name}}</td>
         <td>{{cyberneticHash[name].Type}}</td>
@@ -43,7 +43,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in cybernetics">
-        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Enhancement)">+</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Enhancement, 1, true)">+</button></td>
         <td>{{item.Enhancement}}</td>
         <td>{{item.Type}}</td>
         <td>{{item.Cost}} gp</td>

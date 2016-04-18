@@ -470,13 +470,18 @@ angular.module('woin-character')
       return _.size($scope.character[KEY]) === 0;
     };
 
-    $scope.incrementItem = function (KEY, itemKey, value) {
+    $scope.incrementItem = function (KEY, itemKey, value, isEquipment) {
       if(!value) value = 1;
       if(!$scope.character[KEY]) $scope.character[KEY] = {};
-      if (!$scope.character[KEY][itemKey]) $scope.character[KEY][itemKey] = 0;
-      $scope.character[KEY][itemKey] += value;
+      var ref = $scope.character[KEY];
+      if(isEquipment) {
+        if(!ref.equipment) ref.equipment = {};
+        ref = ref.equipment;
+      }
+      if (!ref[itemKey]) ref[itemKey] = 0;
+      ref[itemKey] += value;
 
-      if(_.isNaN($scope.character[KEY][itemKey])) $scope.character[KEY][itemKey] = 0;
+      if(_.isNaN(ref[itemKey])) ref[itemKey] = 0;
     };
 
     // only allow one type of the item at a time
@@ -494,10 +499,12 @@ angular.module('woin-character')
       return (keys.length === 0 || (_.includes(keys, itemKey)));
     };
 
-    $scope.decrementItem = function (KEY, itemKey, value) {
+    $scope.decrementItem = function (KEY, itemKey, value, isEquipment) {
       if(!value) value = 1;
-      $scope.character[KEY][itemKey] -= value;
-      if ($scope.character[KEY][itemKey] <= 0 || _.isNaN($scope.character[KEY][itemKey])) delete $scope.character[KEY][itemKey];
+      var ref = $scope.character[KEY];
+      if(isEquipment) ref = ref.equipment;
+      ref[itemKey] -= value;
+      if (ref[itemKey] <= 0 || _.isNaN(ref[itemKey])) delete ref[itemKey];
     };
 
     var skillCategories = {
