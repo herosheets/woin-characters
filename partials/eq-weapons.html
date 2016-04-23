@@ -1,8 +1,45 @@
-<h2>Equipment - Armor
+<h2>Equipment - Weapons
 </h2>
 <p class="explainer">
     Choose your weapons
 </p>
+
+<h3>Your Weapons</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Damage</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Cost</th>
+        <th>Size</th>
+        <th>Weight</th>
+        <th>Availability</th>
+        <th>Special</th>
+        <th>Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(name, count) in character[KEY]">
+        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+        <td>{{weaponHash[name].Weapon}}</td>
+        <td>{{weaponHash[name].Damage}}</td>
+        <td>{{weaponHash[name].Type}}</td>
+        <td>{{weaponHash[name].Range}}</td>
+        <td>{{weaponHash[name].Cost}} gp</td>
+        <td>{{weaponHash[name].Size}} </td>
+        <td>{{weaponHash[name].Weight}} lbs</td>
+        <td>{{weaponHash[name].Availability}}</td>
+        <td>{{weaponHash[name].Special}}</td>
+        <td>{{count}}</td>
+    </tr>
+    <tr ng-if="isEmpty(KEY)">
+        <td colspan="6" class="text-center">No weapons selected</td>
+    </tr>
+    </tbody>
+</table>
 
 <table class="table table-striped">
     <thead>
@@ -21,7 +58,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in weapons">
-        <td><input type="radio" ng-value="item" ng-model="character.equipment.weapon"></td>
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Weapon)">+</button></td>
         <td>{{item.Weapon}}</td>
         <td>{{item.Damage}}</td>
         <td>{{item.Type}}</td>

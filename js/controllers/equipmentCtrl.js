@@ -9,6 +9,7 @@ angular.module('woin-character')
 angular.module('woin-character')
   .controller('EquipmentWeaponsCtrl', function EquipmentCtrl($scope) {
       $scope.weapons = $scope.$parent.equipment.weapons;
+    var KEY = $scope.KEY = 'Weapons';
   });
 
 angular.module('woin-character')
@@ -21,6 +22,8 @@ angular.module('woin-character')
 angular.module('woin-character')
   .controller('EquipmentCyberneticsCtrl', function EquipmentCtrl($scope) {
       $scope.cybernetics = $scope.$parent.equipment.cybernetics;
+    console.log("Cybernetics:")
+    console.log($scope.cybernetics);
       var KEY = $scope.KEY = 'Cybernetics';
   });
 

@@ -109,7 +109,7 @@
                     <span style="font-weight: bold;">NATURAL DAMAGE</span>  {{ calculateNaturalDamage() }}
                 </td>
             </tr>
-            <tr ng-repeat="w in character.weapons">
+            <tr ng-repeat="w in character.equipment.weapons">
                 <td colspan="17" height="17" align="left" bgcolor="#dddddd">
                     <span style="font-weight: bold; font-style: italic;"> {{ w.name }}</span>
                     {{ w.damage }}

@@ -41,9 +41,11 @@ angular.module('woin-character').service('Components',
         "\"Club\",2d6,Blunt,,1,M,3,0A,\n"+
         "\"Bow, longbow\",2d6+2,Piercing,18,70,L,4,2A,";
       var eqCybernetics =
-        "Enhancement,Type,Cost,Effect\n"+
-        "Artificial Arm,Major,100000,\"dice:STRENGTH:1d6\"\n"+
-        "Digiclaws,Minor,100000,\"damage:natural:1d6\"";
+        "Enhancement,Type,Cost,Effect,stat,stat_bonus,skill,skill_bonus,defense,defense_bonus,attack,attack_bonus\n"+
+        "Artificial Arm,Major,100000,\"+1d6 to STRENGTH dice pool\",STRENGTH,1d6,,,,,,\n"+
+        "Digiclaws,Minor,100000,\"+1d6 natural damage\",,,,,,,natural,1d6\n"+
+        "Durarmor/sub-dermal plating,Major,200000,\"SOAK 5\",,,,,SOAK,5,,,\n"+
+        "Input jacks,Minor,50000,\"+1d6 computer operations\",,,computer operations,1d6,,,,";
       var eqMounts =
         "Automobile,Year,Cost,AdjPrice,Upgrades,Occupants,SPEED,ACCEL,HANDLING,HEALTH,SOAK,DEFENSE\n"+
         "Aston Martin DB5, 1963, 7000, 43400,10,2,14,3,C,57,5,10\n"+
@@ -108,6 +110,7 @@ angular.module('woin-character').service('Components',
         scope.traints = [];
         scope.generalHash = {};
         scope.gearHash = {};
+        scope.weaponHash = {};
         scope.cyberneticHash = {};
 
         var doDownload = location.hostname === 'characters.enworld.org';
@@ -177,6 +180,10 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.equipment.weapons.push(row.data[0]);
+            var KEY = 'Item';
+            _.each(scope.equipment.weapons, function (item) {
+              scope.weaponHash[item[KEY]] = item;
+            });
           },
           complete: function () {
             console.log("Weapons Loaded");
