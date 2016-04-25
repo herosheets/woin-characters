@@ -22,12 +22,29 @@ angular.module('woin-character')
         return 5;
     };
 
+    $scope.getSOAK = function() {
+        return _.get($scope, 'character.equipment.armor.SOAK', 0);
+    };
+
+    $scope.getVULN = function() {
+        return _.get($scope, 'character.equipment.armor.Vulnerable', '-');
+    };
+
+    var getFromCybernetics = function(type, search, isDice) {
+        return _.reduce(_.keys(_.get($scope, 'character.Cybernetics.equipment', {})), function(prev, key) {
+            var ref = _.find($scope.equipment.cybernetics, { Enhancement: key });
+            var val = ref[type] === search ? ref[type+'_bonus'] : '0';
+            if(isDice && _.contains(val, 'd')) return prev + +val.split('d')[0];
+            return prev + +val;
+        }, 0);
+    };
+
     $scope.getStatForCharacter = function(stat) {
         var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
         base += _.reduce($scope.character.careers, function(prev, cur) {
             return prev + calcStatsForCareer(cur)[stat] || 0;
         }, 0);
-        return base;
+        return base + (getFromCybernetics('stat', stat, false) || 0);
     };
 
     $scope.getDiceValueForCharacter = function(stats) {
@@ -35,7 +52,7 @@ angular.module('woin-character')
 
         var base = 0;
         base += _.reduce(stats, function(prev, cur) {
-            return prev + getDiceForStat($scope.getStatForCharacter(cur));
+            return prev + getDiceForStat($scope.getStatForCharacter(cur)) + (getFromCybernetics('stat', cur, true) || 0);
         }, 0);
         return base;
     };
@@ -156,8 +173,6 @@ angular.module('woin-character')
 
       var attrVal = _.map(types[defenseType].attributes, function(a) {
         $scope.getDiceValueForCharacter([a]);
-        console.log("Attr: " + a);
-        console.log("get dice val for a: " + $scope.getDiceValueForCharacter([a]));
         return $scope.getDiceValueForCharacter([a]);
       });
 
@@ -165,10 +180,6 @@ angular.module('woin-character')
         return $scope.character.getSkillRanks(s);
       });
 
-      console.log("Attr vals:");
-      console.log(attrVal)
-      console.log("Skill vals:");
-      console.log(skillVal)
       var attrMax = maxArray(attrVal);
       var skillMax = maxArray(skillVal);
 
