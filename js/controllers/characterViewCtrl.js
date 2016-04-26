@@ -22,21 +22,21 @@ angular.module('woin-character')
         return 5;
     };
 
+      var getFromCybernetics = function(type, search, isDice) {
+          return _.reduce(_.keys(_.get($scope, 'character.Cybernetics.equipment', {})), function(prev, key) {
+              var ref = _.find($scope.equipment.cybernetics, { Enhancement: key });
+              var val = ref[type] === search ? ref[type+'_bonus'] : '0';
+              if(isDice && _.contains(val, 'd')) return prev + +val.split('d')[0];
+              return prev + +val;
+          }, 0);
+      };
+
     $scope.getSOAK = function() {
-        return _.get($scope, 'character.equipment.armor.SOAK', 0);
+        return _.get($scope, 'character.equipment.armor.SOAK', 0) + getFromCybernetics('defense', 'SOAK', false);
     };
 
     $scope.getVULN = function() {
         return _.get($scope, 'character.equipment.armor.Vulnerable', '-');
-    };
-
-    var getFromCybernetics = function(type, search, isDice) {
-        return _.reduce(_.keys(_.get($scope, 'character.Cybernetics.equipment', {})), function(prev, key) {
-            var ref = _.find($scope.equipment.cybernetics, { Enhancement: key });
-            var val = ref[type] === search ? ref[type+'_bonus'] : '0';
-            if(isDice && _.contains(val, 'd')) return prev + +val.split('d')[0];
-            return prev + +val;
-        }, 0);
     };
 
     $scope.getStatForCharacter = function(stat) {
