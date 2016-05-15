@@ -204,25 +204,28 @@ angular.module('woin-character')
       career: [],
       skills: [],
       equipment: {
-        gear: [],
-        armor: {},
-        weapon: {},
-        cybernetics: [],
-        mounts: []
+        Gear: {},
+        Armor: {},
+        Weapons: {},
+        Cybernetics: {},
+        mount: {}
       },
       getEquipmentCost: function() {
         var cost = 0;
-        var types = ["gear", "cybernetics", "mounts"];
-        angular.forEach(types, function(t) {
-          angular.forEach(this.equipment[t], function(e) {
-            cost = cost + e.cost;
-          });
+        angular.forEach(_.keys(character.equipment.Gear), function(k) {
+          cost = cost + $scope.gearHash[k].Cost;
         });
-        if (this.equipment.armor !== {}) {
-          cost = cost + this.equipment.armor.cost;
-        }
-        if (this.equipment.weapon !== {}) {
-          cost = cost + this.equipment.weapon.cost;
+        angular.forEach(_.keys(character.equipment.Weapons), function(k) {
+          cost = cost + $scope.weaponHash[k].Cost;
+        });
+        angular.forEach(_.keys(character.equipment.Cybernetics), function(k) {
+          cost = cost + $scope.cyberneticHash[k].Cost;
+        });
+        angular.forEach(_.keys(character.equipment.Armor), function(k) {
+          cost = cost + $scope.armorHash[k].Cost;
+        });
+        if (character.equipment.mount !== {}) {
+          cost = cost + character.equipment.mount.Cost;
         }
         return cost;
       },
@@ -236,20 +239,22 @@ angular.module('woin-character')
         return ranks;
       },
       printEquipment: function() {
-        console.log("Printing equipment:")
-        console.log(this);
-        var equipment = "";
-        var types = ["gear", "cybernetics", "mounts"];
-        angular.forEach(types, function(t) {
-          angular.forEach(this.equipment[t], function(e) {
-            equipment = equipment + e.name + "\n";
-          });
+        var character = this;
+        var equipment = [];
+        angular.forEach(_.keys(character.equipment.Gear), function(k) {
+          equipment.push($scope.gearHash[k].Item + " (x" + character.equipment.Gear[k] + ")");
         });
-        if (this.equipment.armor !== {}) {
-          equipment = equipment + this.equipment.armor.name;
-        }
-        if (this.equipment.weapon !== {}) {
-          equipment = equipment + this.equipment.weapon.name;
+        angular.forEach(_.keys(character.equipment.Weapons), function(k) {
+          equipment.push($scope.weaponHash[k].Weapon + " (x" + character.equipment.Weapons[k] + ")");
+        });
+        angular.forEach(_.keys(character.equipment.Cybernetics), function(k) {
+          equipment.push($scope.cyberneticHash[k].Enhancement + " (x" + character.equipment.Cybernetics[k] + ")");
+        });
+        angular.forEach(_.keys(character.equipment.Armor), function(k) {
+          equipment.push($scope.armorHash[k].Armor + " (x" + character.equipment.Armor[k] + ") [" + $scope.armorHash[k].Category + "]");
+        });
+        if (character.equipment.mount !== {} && character.equipment.mount.Automobile !== undefined) {
+          equipment.push(character.equipment.mount.Automobile);
         }
         return equipment;
       }
@@ -279,13 +284,21 @@ angular.module('woin-character')
       return _.size($scope.character[KEY]) === 0;
     };
 
+
+
     $scope.incrementItem = function (KEY, itemKey, value, isEquipment) {
+      var ref;
       if(!value) value = 1;
-      if(!$scope.character[KEY]) $scope.character[KEY] = {};
-      var ref = $scope.character[KEY];
       if(isEquipment) {
-        if(!ref.equipment) ref.equipment = {};
-        ref = ref.equipment;
+        console.log("Equipment:")
+        console.log($scope.character.equipment)
+        ref = $scope.character.equipment[KEY];
+        console.log("Key:" + KEY);
+        console.log("Ref:");
+        console.log(ref);
+      } else {
+        if(!$scope.character[KEY]) $scope.character[KEY] = {};
+        ref = $scope.character[KEY];
       }
       if (!ref[itemKey]) ref[itemKey] = 0;
       ref[itemKey] += value;

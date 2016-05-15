@@ -26,7 +26,7 @@ angular.module('woin-character').service('Components',
       var derived_stats = 'testempty';
       var eqGear =
         "Item,Cost,Weight,Availability\n"+
-        "'Adhesive, instant',30,0.1,6A\n"+
+        "\"Adhesive, instant\",30,0.1,6A\n"+
         "Backpack,4,2,2A";
       var eqArmor =
         "Armor,Category,SOAK,DEFENSE,Cost,Type,Weight,Vulnerable\n"+
@@ -111,6 +111,7 @@ angular.module('woin-character').service('Components',
         scope.generalHash = {};
         scope.gearHash = {};
         scope.weaponHash = {};
+        scope.armorHash = {};
         scope.cyberneticHash = {};
 
         var doDownload = location.hostname === 'characters.enworld.org';
@@ -140,6 +141,10 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.equipment.armor.push(row.data[0]);
+            var KEY = 'Armor';
+            _.each(scope.equipment.armor, function (item) {
+              scope.armorHash[item[KEY]] = item;
+            });
           },
           complete: function () {
             console.log("Armor Loaded");

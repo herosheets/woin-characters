@@ -3,7 +3,8 @@ angular = require('angular');
 
 angular.module('woin-character')
   .controller('EquipmentArmorCtrl', function EquipmentCtrl($scope) {
-      $scope.armor = $scope.$parent.equipment.armor;
+    $scope.armor = $scope.$parent.equipment.armor;
+    var KEY = $scope.KEY = 'Armor';
   });
 
 angular.module('woin-character')

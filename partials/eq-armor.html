@@ -4,6 +4,38 @@
    Choose your armor
 </p>
 
+<h3>Your Armor</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Category</th>
+        <th>SOAK</th>
+        <th>DEFENSE</th>
+        <th>Cost</th>
+        <th>Type</th>
+        <th>Weight</th>
+        <th>Vulnerable</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(name, count) in character.equipment[KEY]">
+        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+        <td>{{ name }}</td>
+        <td>{{ count }}</td>
+        <td>{{armorHash[name].Category}}</td>
+        <td>{{armorHash[name].SOAK}}</td>
+        <td>{{armorHash[name].DEFENSE}}</td>
+        <td>{{armorHash[name].Cost}} gp</td>
+        <td>{{armorHash[name].Type}} </td>
+        <td>{{armorHash[name].Weight}} lbs</td>
+        <td>{{armorHash[name].Vulnerable}}</td>
+    </tr>
+    </tbody>
+</table>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -20,7 +52,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in armor">
-        <td><input type="radio" ng-value="item" ng-model="character.equipment.armor"></td>
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Armor, 1, true)">+</button></td>
         <td>{{item.Armor}}</td>
         <td>{{item.Category}}</td>
         <td>{{item.SOAK}}</td>

@@ -127,7 +127,9 @@
             <tr>
                 <td colspan="17" height="17" align="left">
                     <span style="font-weight: bold;">Gear</span>
-                    {{ character.printEquipment() }}
+                    <ul ng-repeat="e in character.printEquipment()">
+                        <li>{{ e }}</li>
+                    </ul>
                 </td>
             </tr>
             <tr>

@@ -16,7 +16,7 @@
         <th>Effect</th>
     </thead>
     <tbody>
-    <tr ng-repeat="(name, count) in character[KEY].equipment">
+    <tr ng-repeat="(name, count) in character.equipment[KEY]">
         <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>
         <td>{{count}}</td>
         <td>{{name}}</td>

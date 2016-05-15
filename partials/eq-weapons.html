@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="(name, count) in character[KEY].equipment">
+    <tr ng-repeat="(name, count) in character.equipment[KEY]">
         <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
         <td>{{name}}</td>
         <td>{{count}}</td>
