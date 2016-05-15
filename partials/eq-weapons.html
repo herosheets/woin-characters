@@ -10,6 +10,7 @@
     <tr>
         <th></th>
         <th>Name</th>
+        <th>Count</th>
         <th>Damage</th>
         <th>Type</th>
         <th>Range</th>
@@ -18,13 +19,13 @@
         <th>Weight</th>
         <th>Availability</th>
         <th>Special</th>
-        <th>Count</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="(name, count) in character[KEY]">
+    <tr ng-repeat="(name, count) in character[KEY].equipment">
         <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
-        <td>{{weaponHash[name].Weapon}}</td>
+        <td>{{name}}</td>
+        <td>{{count}}</td>
         <td>{{weaponHash[name].Damage}}</td>
         <td>{{weaponHash[name].Type}}</td>
         <td>{{weaponHash[name].Range}}</td>
@@ -33,7 +34,6 @@
         <td>{{weaponHash[name].Weight}} lbs</td>
         <td>{{weaponHash[name].Availability}}</td>
         <td>{{weaponHash[name].Special}}</td>
-        <td>{{count}}</td>
     </tr>
     <tr ng-if="isEmpty(KEY)">
         <td colspan="6" class="text-center">No weapons selected</td>
@@ -58,7 +58,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in weapons">
-        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Weapon)">+</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Weapon, 1, true)">+</button></td>
         <td>{{item.Weapon}}</td>
         <td>{{item.Damage}}</td>
         <td>{{item.Type}}</td>

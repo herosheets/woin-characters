@@ -180,7 +180,7 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.equipment.weapons.push(row.data[0]);
-            var KEY = 'Item';
+            var KEY = 'Weapon';
             _.each(scope.equipment.weapons, function (item) {
               scope.weaponHash[item[KEY]] = item;
             });
