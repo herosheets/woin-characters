@@ -234,219 +234,28 @@ angular.module('woin-character')
           }
         });
         return ranks;
+      },
+      printEquipment: function() {
+        console.log("Printing equipment:")
+        console.log(this);
+        var equipment = "";
+        var types = ["gear", "cybernetics", "mounts"];
+        angular.forEach(types, function(t) {
+          angular.forEach(this.equipment[t], function(e) {
+            equipment = equipment + e.name + "\n";
+          });
+        });
+        if (this.equipment.armor !== {}) {
+          equipment = equipment + this.equipment.armor.name;
+        }
+        if (this.equipment.weapon !== {}) {
+          equipment = equipment + this.equipment.weapon.name;
+        }
+        return equipment;
       }
     };
 
     Components.loadCsvData($scope);
-
-    // helper functions for cost & cargo calculations
-    $scope.totalCost = function () {
-      return getCost($scope.ship, $scope);
-    };
-
-    $scope.currentSpace = function () {
-      return getSpace($scope.ship, $scope);
-    };
-
-    $scope.maxSpace = function () {
-      return getSpaceMax($scope.ship, $scope);
-    };
-
-    $scope.maxCpu = function () {
-      return getCpuMax($scope.ship, $scope);
-    };
-
-    $scope.currentCpu = function () {
-      return getCpu($scope.ship, $scope);
-    };
-
-    $scope.isHullConfigDisabled = function(config) {
-      if(!config.levels) return false;
-      if(config.levels && !$scope.ship.hull) return true;
-      return config.levels.indexOf($scope.ship.hull.Class) === -1;
-    };
-
-    $scope.calculateSublSpeed = function (engineName, quantity) {
-      var totalPower = $scope.sublHash[engineName]['Power'] * quantity;
-      var hullClass = getHullClassInteger($scope.ship, $scope.hulls);
-
-      if (totalPower !== undefined && hullClass !== undefined) {
-        return totalPower/hullClass;
-      } else {
-        return 0;
-      }
-    };
-
-    $scope.getTotalCrew = function() {
-      return getTotalCrew($scope.ship, $scope);
-    };
-
-    $scope.calculateFtl = function (engineName, quantity) {
-      var totalPower = $scope.ftlHash[engineName]['Power'] * quantity;
-      var hullClass = getHullClassInteger($scope.ship, $scope.hulls);
-      var maxFtl = getTotalShipValue($scope.ship, 'Max FTL', $scope);
-
-      if (totalPower !== undefined && hullClass !== undefined) {
-        var max = totalPower/hullClass;
-        if (max <= maxFtl) {
-          return max;
-        } else {
-          return maxFtl;
-        }
-      } else {
-        return 0;
-      }
-    };
-
-    $scope.calculateOperationalRange = function() {
-      if (!$scope.ship.hull || !$scope.ship['FTL Engine']) return;
-      var shipClass = Number.fromRoman($scope.ship.hull.Class);
-      try {
-        var engines = Object.keys($scope.ship['FTL Engine']);
-        var engineName = engines[0];
-        var fuelEff = $scope.ftlHash[engineName]['Fuel Eff'];
-        if (fuelEff === '-') {
-          return "-";
-        } else {
-          return Math.pow(shipClass, 3) * fuelEff;
-        }
-      } catch (e) {
-        return "-";
-      }
-    };
-
-    $scope.calculateSuperstructure = function() {
-      try {
-        var hullClass = getHullClassInteger($scope.ship, $scope.hulls);
-        var baseSs = hullClass * 3;
-        var additional = $scope.ship.Superstructure["Additional SS"];
-        if (additional !== undefined) {
-          baseSs += additional;
-        }
-        return baseSs;
-      } catch(e) {
-        return 0;
-      }
-
-    };
-
-    $scope.calculateDefense = function() {
-      var base = getAllShipValues($scope.ship, 'DEFENSE', $scope);
-      base -=  getQuantityValue($scope.ship['Point Defenses'], 'DEFENSE', $scope.pointDefensesHash);
-      return base;
-    };
-
-    $scope.calculateElectronicDefense = function() {
-      try {
-        var bonus = getAllShipValues($scope.ship, 'ELECTRONIC DEFENSE', $scope);
-        var base = getCpu($scope.ship, $scope);
-        return Math.floor((base/2) + bonus);
-      } catch (e) {
-        return 0;
-      }
-
-    };
-
-    $scope.presentArmor = function() {
-      var base = "";
-      var ballistic = 0;
-      var energy = 0;
-      var hullClass = getHullClassInteger($scope.ship, $scope.hulls);
-      var reactive = 0;
-      var ablative = 0;
-
-      if ($scope.ship.Superstructure !== undefined) {
-        reactive = $scope.ship.Superstructure["Armor, reactive"];
-        ablative = $scope.ship.Superstructure["Armor, ablative"];
-      }
-
-      if (reactive !== undefined && reactive !== 0) {
-        ballistic += (reactive/hullClass);
-        energy += (1.5 * reactive / hullClass);
-        base += reactive + "x reactive ";
-      }
-
-      if (ablative !== undefined && ablative !== 0) {
-        ballistic += (1.5 * ablative/hullClass);
-        energy += (ablative / hullClass);
-        base += ablative + "x ablative ";
-      }
-
-      if (base === "") {
-        base = "-";
-      } else {
-        base += "(SOAK " + ballistic + " ballistic, " + energy + " energy.)";
-      }
-      return base;
-    };
-
-    $scope.presentCargo = function() {
-      if ($scope.ship.hull !== undefined) {
-        var initialCargo = $scope.ship.hull['Max CU'];
-        var amountRemaining = $scope.maxSpace() - $scope.currentSpace();
-        var tonnage = amountRemaining * 50;
-        return initialCargo + " ("+amountRemaining+" available; capacity " + tonnage + " tons)";
-      } else {
-        return "-";
-      }
-    };
-
-    $scope.presentType = function(type) {
-      if (type.Traits === undefined) {
-        return "None";
-      } else {
-        return type.Type;
-      }
-    };
-
-    $scope.calculateLuxury = function() {
-      var luxuryTotal = getAllShipValues($scope.ship, 'Luxury/crew', $scope);
-      var crewTotal = $scope.getTotalCrew();
-      var lux = (luxuryTotal / crewTotal) * 100;
-
-      if(_.isNaN(lux)) lux = 0;
-
-      lux = Math.round(lux * 100) / 100;
-      lux = lux.toFixed(0);
-
-      if (lux < 50) {
-        return lux + "% (Spartan: -2d6)";
-      } else if (lux < 90) {
-        return lux + "% (Poor: -1d6)";
-      } else if (lux < 150) {
-        return lux + "% (Adequate: -)";
-      } else if (lux < 199) {
-        return lux + "% (Comfortable: +1d6)";
-      } else {
-        return lux + "% (Decadent: -1d6)";
-      }
-    };
-
-    $scope.clearCloaking = function() {
-      if(!$scope.ship.General) return;
-      _.each($scope.ship.General, function(value, key) {
-        if(_.findWhere($scope.systems.cloaking, {Item: key})) {
-          delete $scope.ship.General[key];
-        }
-      });
-    };
-
-    $scope.calculateSoak = function(power, quantity) {
-      var hullClass = getHullClassInteger($scope.ship, $scope.hulls);
-      return parseInt(power * quantity / hullClass);
-    };
-
-    $scope.isHangar = function(itemName) {
-      return ($scope.generalHash[itemName] && $scope.generalHash[itemName].hangar !== undefined);
-    };
-
-    $scope.getCrewSize = function() {
-      return getTotalCrew($scope.ship, $scope);
-    };
-
-    $scope.getHangarQty = function(hangar) {
-      return $scope.generalHash[hangar].Craft;
-    };
 
     $scope.addQuantitied = function (component, key, item) {
       if (component[key] === undefined) {
