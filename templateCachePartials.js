@@ -259,7 +259,9 @@ module.run(['$templateCache', function($templateCache) {
     '            <tr>\n' +
     '                <td colspan="17" height="17" align="left">\n' +
     '                    <span style="font-weight: bold;">Gear</span>\n' +
-    '                    {{ character.printEquipment() }}\n' +
+    '                    <ul ng-repeat="e in character.printEquipment()">\n' +
+    '                        <li>{{ e }}</li>\n' +
+    '                    </ul>\n' +
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
@@ -557,6 +559,38 @@ module.run(['$templateCache', function($templateCache) {
     '   Choose your armor\n' +
     '</p>\n' +
     '\n' +
+    '<h3>Your Armor</h3>\n' +
+    '<table class="table table-striped">\n' +
+    '    <thead>\n' +
+    '    <tr>\n' +
+    '        <th></th>\n' +
+    '        <th>Name</th>\n' +
+    '        <th>Count</th>\n' +
+    '        <th>Category</th>\n' +
+    '        <th>SOAK</th>\n' +
+    '        <th>DEFENSE</th>\n' +
+    '        <th>Cost</th>\n' +
+    '        <th>Type</th>\n' +
+    '        <th>Weight</th>\n' +
+    '        <th>Vulnerable</th>\n' +
+    '    </tr>\n' +
+    '    </thead>\n' +
+    '    <tbody>\n' +
+    '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>\n' +
+    '        <td>{{ name }}</td>\n' +
+    '        <td>{{ count }}</td>\n' +
+    '        <td>{{armorHash[name].Category}}</td>\n' +
+    '        <td>{{armorHash[name].SOAK}}</td>\n' +
+    '        <td>{{armorHash[name].DEFENSE}}</td>\n' +
+    '        <td>{{armorHash[name].Cost}} gp</td>\n' +
+    '        <td>{{armorHash[name].Type}} </td>\n' +
+    '        <td>{{armorHash[name].Weight}} lbs</td>\n' +
+    '        <td>{{armorHash[name].Vulnerable}}</td>\n' +
+    '    </tr>\n' +
+    '    </tbody>\n' +
+    '</table>\n' +
+    '\n' +
     '<table class="table table-striped">\n' +
     '    <thead>\n' +
     '    <tr>\n' +
@@ -573,7 +607,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="item in armor">\n' +
-    '        <td><input type="radio" ng-value="item" ng-model="character.equipment.armor"></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Armor, 1, true)">+</button></td>\n' +
     '        <td>{{item.Armor}}</td>\n' +
     '        <td>{{item.Category}}</td>\n' +
     '        <td>{{item.SOAK}}</td>\n' +
@@ -584,8 +618,7 @@ module.run(['$templateCache', function($templateCache) {
     '        <td>{{item.Vulnerable}}</td>\n' +
     '    </tr>\n' +
     '    </tbody>\n' +
-    '</table>\n' +
-    '');
+    '</table>');
 }]);
 })();
 
@@ -615,7 +648,7 @@ module.run(['$templateCache', function($templateCache) {
     '        <th>Effect</th>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="(name, count) in character[KEY].equipment">\n' +
+    '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
     '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>\n' +
     '        <td>{{count}}</td>\n' +
     '        <td>{{name}}</td>\n' +
@@ -681,7 +714,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="(name, count) in character[KEY]">\n' +
+    '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
     '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>\n' +
     '        <td>{{count}}</td>\n' +
     '        <td>{{name}}</td>\n' +
@@ -793,6 +826,7 @@ module.run(['$templateCache', function($templateCache) {
     '    <tr>\n' +
     '        <th></th>\n' +
     '        <th>Name</th>\n' +
+    '        <th>Count</th>\n' +
     '        <th>Damage</th>\n' +
     '        <th>Type</th>\n' +
     '        <th>Range</th>\n' +
@@ -801,13 +835,13 @@ module.run(['$templateCache', function($templateCache) {
     '        <th>Weight</th>\n' +
     '        <th>Availability</th>\n' +
     '        <th>Special</th>\n' +
-    '        <th>Count</th>\n' +
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="(name, count) in character[KEY]">\n' +
+    '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
     '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>\n' +
-    '        <td>{{weaponHash[name].Weapon}}</td>\n' +
+    '        <td>{{name}}</td>\n' +
+    '        <td>{{count}}</td>\n' +
     '        <td>{{weaponHash[name].Damage}}</td>\n' +
     '        <td>{{weaponHash[name].Type}}</td>\n' +
     '        <td>{{weaponHash[name].Range}}</td>\n' +
@@ -816,7 +850,6 @@ module.run(['$templateCache', function($templateCache) {
     '        <td>{{weaponHash[name].Weight}} lbs</td>\n' +
     '        <td>{{weaponHash[name].Availability}}</td>\n' +
     '        <td>{{weaponHash[name].Special}}</td>\n' +
-    '        <td>{{count}}</td>\n' +
     '    </tr>\n' +
     '    <tr ng-if="isEmpty(KEY)">\n' +
     '        <td colspan="6" class="text-center">No weapons selected</td>\n' +
@@ -841,7 +874,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="item in weapons">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Weapon)">+</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, item.Weapon, 1, true)">+</button></td>\n' +
     '        <td>{{item.Weapon}}</td>\n' +
     '        <td>{{item.Damage}}</td>\n' +
     '        <td>{{item.Type}}</td>\n' +
