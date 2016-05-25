@@ -11,7 +11,7 @@ Cortex radiation emitter,1d6,radiation,3,1500,S,3,8B,"ongoing, lllegal"
 "Crossbow, light",1d6+2,piercing,10,40,S,5,2A,
 "Crossbow, repeating",1d6,piercing,10,750,M,12,2A,
 Dart,1,piercing,3,1,S,1,1A,
-Dartgun,-,-,5,75,S,1,5A,
+Dartgun,-0,-0,5,75,S,1,5A,
 Electro-arc,1d6+2,electricity,3,1000,S,3,6A,
 Firelance,1d6,piercing,7,25,L,4,2A,
 "Gatling gun, heavy polaron",3d6+4,heat,15,10000,L,20,9B,"heavy, auto"
@@ -42,4 +42,27 @@ Shortbow,1d6+2,piercing,12,25,M,3,2A,
 Sling,1d6,blunt,8,0,S,0,1A,
 Spear,2d6+2,piercing,6,2,L,6,1A,
 "Spear, shortspear (javelin)",2d6,piercing,5,2,M,3,1A,
-Tangler,-,-,2,750,M,5,9C,restrains
+Tangler,-0,-0,2,750,M,5,9C,restrains
+Brass knuckles,-,Blunt,,10,T,1 lb.,2A,
+Garrote,1d6,-,,2,S,-,2A,
+Halberd,2d6,Slashing/Piercing,,5,L,5 lb.,2A,"reach, hook"
+"Hammer, light",2d6,Blunt,,1,S,2 lb.,1A,
+"Hammer, warhammer",3d6,Blunt,,12,M,  5lb.,1A,
+Knife/dagger,2d6 ,Piercing,,2,T,1 lb.,1A,thrown
+"Lance, light",3d6,Piercing,,120,L,30 lb.,2A,mounted
+"Mace, light",2d6+2,Blunt,,15,M,  5lb.,2A,
+"Mace, heavy",2d6+4,Blunt,,30,M,  9lb.,2A,heavy
+Morningstar,3d6+2,Blunt,,75,L,  7lb,2A,heavy
+Nunchaku,2d6,Blunt,,4,M,2 lb.,2A,
+Quarterstaff,2d6,Blunt,,-,L,4 lb.,1A,
+Sap,2d6,Blunt,,1,S,2 lb.,2A,stun
+Scythe,2d6 ,Slashing,,4,M,9 lb.,2A,
+Spear,2d6+2,Piercing,,3,L,6 lb.,0A,thrown
+"Sword, rapier",2d6,Piercing,,20,M,3 lb.,3A,"+1 melee def, +1 init"
+"Sword, scimitar",2d6,Slashing,,15,M,4 lb.,3A,
+"Sword, shortsword",2d6,Piercing,,10,S,3lb.,2A,knives or swords 
+"Sword, longsword",3d6+2,Slashing,,15,M,  4lb.,2A,
+"Sword, two-bladed",2d6,Slashing,,100,L,10 lb.,2B,"double, agile"
+"Sword, zweihänder",4d6,Slashing,,25,L,8 lb.,2A,heavy
+Trident,2d6,Piercing,,4,L,6 lb.,1A,"reach, set"
+Whip,2d6,Slashing,,20,M,2 lb.,2A,reach
