@@ -1,5 +1,21 @@
 Armor,Category,SOAK,DEFENSE,Cost,Type,Weight,Vulnerable
-Cloth,Archaic Armor,2,0,20,Light,8,"Blunt, Fire"
-Full Plate,Archaiic Armor,10,-4,2000,Heavy,70,Electricity
-"Small, wooden",Shield,,+2,40,,6,
-"Four-mirror armor",Eastern Armor,6,0,45,Medium,45,
+Cloth,Archaic,2,0,20,light,8,"blunt, fire"
+Full Plate,Archaic,10,-4,2000,heavy,70,electricity
+"Shield, small, wooden",Shield,,2,40,,6,
+Four-mirror armor,Eastern,6,0,45,medium,45,
+Synthetic weave,Futuristic,2,0,30,light,5,blunt
+Padded,Archaic,3,0,20,light,10,heat
+Mesh lining,Futuristic,4,0,50,light,8,blunt
+Leather,Archaic,4,0,35,light,15,
+Kevlar vest,Futuristic,5,0,100,light,30,piercing
+"Kevlar coat, long",Futuristic,6,-2,200,medium,50,piercing
+Environmental suit,Futuristic,4,-2,500,medium,40,piercing
+Riot armor,Futuristic,7,-2,1000,medium,50,
+"Battlesuit, basic",Futuristic,8,-4,2000,heavy,60,electricity
+"Battlesuit, navy",Futuristic,9,-4,3000,heavy,65,electricity
+Powered combat armor,Futuristic,10,-4,10000,heavy,60,"electricity, ion"
+Forcefield,Shield,,4,2000,,1,
+"Shield, energy",Shield,,4,1200,,1,
+"Shield, large, duranium",Shield,,6,200,,25,
+"Shield, medium, duranium",Shield,,4,90,,10,
+"Shield, small, duranium",Shield,,2,40,,6,
