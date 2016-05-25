@@ -1,5 +1,45 @@
 Weapon,Damage,Type,Range,Cost,Size,Weight,Availability,Special
-"Axe, battleaxe",3d6,Slashing,,10,M,5,1A,
-"Axe, handaxe",2d6,Slashing,,4,S,2,1A,Thrown
-"Club",2d6,Blunt,,1,M,3,0A,
-"Bow, longbow",2d6+2,Piercing,18,70,L,4,2A,
+Arquebus,2d6,ballistic,5,500,L,7,3A,
+"Axe, battleaxe",3d6,slashing,,10,M,5,1A,
+"Axe, handaxe",2d6,slashing,,4,S,2,1A,thrown
+Blunderbuss,2d6+1,ballistic,5,250,M,7,3A,
+"Bow,energy",2d6+2,heat,10,80,M,3,10C,
+Club,2d6,blunt,,1,M,3,0A,
+Cortex radiation emitter,1d6,radiation,3,1500,S,3,8B,"ongoing, lllegal"
+"Crossbow, hand",1d6,piercing,6,130,S,3,2A,
+"Crossbow, heavy",2d6+4,piercing,15,60,M,10,2A,
+"Crossbow, light",1d6+2,piercing,10,40,S,5,2A,
+"Crossbow, repeating",1d6,piercing,10,750,M,12,2A,
+Dart,1,piercing,3,1,S,1,1A,
+Dartgun,-,-,5,75,S,1,5A,
+Electro-arc,1d6+2,electricity,3,1000,S,3,6A,
+Firelance,1d6,piercing,7,25,L,4,2A,
+"Gatling gun, heavy polaron",3d6+4,heat,15,10000,L,20,9B,"heavy, auto"
+Grenade launcher,varies,varies,15,600,L,20,5A,grenades
+Handgonne,1d6+2,ballistic,5,60,S,4,3A,
+"Laser, assault",2d6+4,heat,15,2300,L,5,7A,auto
+Longbow,2d6+2,piercing,18,70,L,4,2A,
+Military combination carbine,2d6,ballistic,10,1000,S,2,6A,"sidearm, grenades"
+Musket,2d6+2,ballistic,8,100,M,7,3A,
+Musketoon,2d6,ballistic,5,75,M,4,3A,
+"Pistol, blaster",2d6,heat,10,40,S,3,7B,sidearm
+"Pistol, cryo",1d6+2,cold,5,1500,S,6,9C,
+"Pistol, disruptor",2d6+2,heat,12,100,S,3,8B,sidearm
+"Pistol, ion",1d6,ion,10,250,S,2,9C,sidearm
+"Pistol, laser",1d6+4,heat,10,100,S,2,7A,"sidearm, beam"
+"Pistol, phaser",2d6+2,heat,15,150,S,2,9B,"sidearm, beam, stun setting"
+"Pistol, slugger",2d6,ballistic,10,75,S,3,5A,sidearm
+"Pistol, sonic",1d6+2,sonic,10,100,S,2,9C,sidearm
+"Pulse cannon, portable",4d6,force,20,4000,L,15,9B,"heavy, auto"
+Railgun,3d6+2,ballistic,10,1400,L,18,7B,"heavy, auto"
+"Rifle, disruptor",3d6,heat,20,350,M,5,8B,
+"Rifle, laser",2d6+3,heat,20,250,M,5,7A,
+"Rifle, phaser",2d6+4,heat,25,500,M,4,9B,"beam, stun setting"
+"Rifle, slugger",2d6+2,ballistic,20,100,M,4,5A,
+"Rifle, sniper",3d6+2,ballistic,35,500,M,5,5A,
+"Rifle, sniper, laser",3d6,heat,40,1000,M,7,8A,beam
+Shortbow,1d6+2,piercing,12,25,M,3,2A,
+Sling,1d6,blunt,8,0,S,0,1A,
+Spear,2d6+2,piercing,6,2,L,6,1A,
+"Spear, shortspear (javelin)",2d6,piercing,5,2,M,3,1A,
+Tangler,-,-,2,750,M,5,9C,restrains
