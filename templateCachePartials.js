@@ -53,6 +53,7 @@ module.run(['$templateCache', function($templateCache) {
     '    <tr>\n' +
     '        <th></th>\n' +
     '        <th>Career</th>\n' +
+    '        <th>Count</th>\n' +
     '        <th>Attributes</th>\n' +
     '        <th>Skill Choices</th>\n' +
     '        <th>Description</th>\n' +
@@ -61,14 +62,15 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '        <tr ng-repeat="c in character.careers">\n' +
-    '            <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)">-</button></td>\n' +
-    '            <td>{{ c.Career }}</td>\n' +
-    '            <td>{{ printAttributes(c.Attributes) }}</td>\n' +
-    '            <td>{{ c[\'Skill Choices\'] }}</td>\n' +
-    '            <td>{{ c.Description }}</td>\n' +
-    '            <td>{{ c.Exploits }}</td>\n' +
-    '            <td>{{ c.Years }}</td>\n' +
+    '        <tr ng-repeat="(name, count) in character[KEY]">\n' +
+    '            <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>\n' +
+    '            <td>{{ name }}</td>\n' +
+    '            <td>{{ count }}</td>\n' +
+    '            <td>{{ printAttributes(careerHash[name].Attributes) }}</td>\n' +
+    '            <td>{{ careerHash[name][\'Skill Choices\'] }}</td>\n' +
+    '            <td>{{ careerHash[name].Description }}</td>\n' +
+    '            <td>{{ careerHash[name].Exploits }}</td>\n' +
+    '            <td>{{ careerHash[name].Years }}</td>\n' +
     '        </tr>\n' +
     '    </tbody>\n' +
     '</table>\n' +
@@ -86,8 +88,8 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '        <tr ng-repeat="c in localCareers">\n' +
-    '            <td><button type="button" class="btn btn-primary" ng-click="addItem(c)">+</button></td>\n' +
+    '        <tr ng-repeat="c in careers">\n' +
+    '            <td><button type="button" class="btn btn-primary" ng-disabled="atMaxCareers()" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>\n' +
     '            <td>{{ c.Career }}</td>\n' +
     '            <td>{{ printAttributes(c.Attributes) }}</td>\n' +
     '            <td>{{ c[\'Skill Choices\'] }}</td>\n' +
