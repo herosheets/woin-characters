@@ -579,7 +579,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>\n' +
     '        <td>{{ name }}</td>\n' +
     '        <td>{{ count }}</td>\n' +
     '        <td>{{armorHash[name].Category}}</td>\n' +
@@ -841,7 +841,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="(name, count) in character.equipment[KEY]">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name, 1, true)">-</button></td>\n' +
     '        <td>{{name}}</td>\n' +
     '        <td>{{count}}</td>\n' +
     '        <td>{{weaponHash[name].Damage}}</td>\n' +
