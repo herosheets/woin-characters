@@ -8,6 +8,7 @@
     <tr>
         <th></th>
         <th>Career</th>
+        <th>Count</th>
         <th>Attributes</th>
         <th>Skill Choices</th>
         <th>Description</th>
@@ -16,14 +17,15 @@
     </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="c in character.careers">
-            <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)">-</button></td>
-            <td>{{ c.Career }}</td>
-            <td>{{ printAttributes(c.Attributes) }}</td>
-            <td>{{ c['Skill Choices'] }}</td>
-            <td>{{ c.Description }}</td>
-            <td>{{ c.Exploits }}</td>
-            <td>{{ c.Years }}</td>
+        <tr ng-repeat="(name, count) in character[KEY]">
+            <td><button type="button" class="btn btn-primary" ng-click="decrementItem(KEY, name)">-</button></td>
+            <td>{{ name }}</td>
+            <td>{{ count }}</td>
+            <td>{{ printAttributes(careerHash[name].Attributes) }}</td>
+            <td>{{ careerHash[name]['Skill Choices'] }}</td>
+            <td>{{ careerHash[name].Description }}</td>
+            <td>{{ careerHash[name].Exploits }}</td>
+            <td>{{ careerHash[name].Years }}</td>
         </tr>
     </tbody>
 </table>
@@ -41,8 +43,8 @@
     </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="c in localCareers">
-            <td><button type="button" class="btn btn-primary" ng-click="addItem(c)">+</button></td>
+        <tr ng-repeat="c in careers">
+            <td><button type="button" class="btn btn-primary" ng-disabled="atMaxCareers()" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>
             <td>{{ c.Career }}</td>
             <td>{{ printAttributes(c.Attributes) }}</td>
             <td>{{ c['Skill Choices'] }}</td>

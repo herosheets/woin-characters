@@ -200,7 +200,7 @@ angular.module('woin-character').service('Components',
           download: doDownload,
           dynamicTyping: true,
           step: function (row) {
-            var KEY = 'Careers';
+            var KEY = 'Career';
             scope.careers.push(row.data[0]);
             scope.careerHash = {};
             _.each(scope.careers, function (item) {
@@ -208,7 +208,7 @@ angular.module('woin-character').service('Components',
             });
           },
           complete: function () {
-            console.log("Caraeers Loaded");
+            console.log("Careers Loaded");
           }
         });
 

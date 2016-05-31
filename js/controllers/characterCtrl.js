@@ -308,7 +308,7 @@ angular.module('woin-character')
 
     // only allow one type of the item at a time
     $scope.incrementOneItem = function (KEY, itemKey) {
-      var keys = Object.getOwnPropertyNames($scope.ship[KEY]);
+      var keys = Object.getOwnPropertyNames($scope.character[KEY]);
 
       if (keys.length === 0 ||  (_.includes(keys, itemKey))) {
         $scope.incrementItem(KEY, itemKey);
@@ -316,7 +316,7 @@ angular.module('woin-character')
     };
 
     $scope.hasThisItem = function (KEY, itemKey) {
-      var keys = Object.getOwnPropertyNames($scope.ship[KEY]);
+      var keys = Object.getOwnPropertyNames($scope.character[KEY]);
 
       return (keys.length === 0 || (_.includes(keys, itemKey)));
     };
