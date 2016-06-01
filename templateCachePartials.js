@@ -1196,7 +1196,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="c in character.skills">\n' +
+    '    <tr ng-repeat="c in character.skills track by $index">\n' +
     '        <td>{{ c.name }}</td>\n' +
     '        <td>{{ c.rank }}</td>\n' +
     '        <td>{{ c.dicePool() }}</td>\n' +
@@ -1212,7 +1212,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="c in skillChoices">\n' +
+    '    <tr ng-repeat="c in skillChoices track by $index">\n' +
     '        <td>{{ c.sourceType }}: {{ c.sourceName }}</td>\n' +
     '        <td>\n' +
     '            <select\n' +
