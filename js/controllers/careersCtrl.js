@@ -3,7 +3,7 @@ angular = require('angular');
 
 angular.module('woin-character')
   .controller('CareersCtrl', function CareersCtrl($scope) {
-    var KEY = $scope.KEY = 'Careers';
+    var KEY = $scope.KEY = 'careers';
 
     var deleteFromArray = function(array, c) {
       var index = array.indexOf(c);

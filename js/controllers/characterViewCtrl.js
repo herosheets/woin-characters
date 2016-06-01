@@ -41,8 +41,8 @@ angular.module('woin-character')
 
     $scope.getStatForCharacter = function(stat) {
         var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
-        base += _.reduce($scope.character.careers, function(prev, cur) {
-            return prev + calcStatsForCareer(cur)[stat] || 0;
+        base += _.reduce(_.keys($scope.character.careers), function(prev, cur) {
+            return prev + (calcStatsForCareer($scope.careerHash[cur])[stat] * $scope.character.careers[cur] || 0);
         }, 0);
         return base + (getFromCybernetics('stat', stat, false) || 0);
     };
