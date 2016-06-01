@@ -284,25 +284,23 @@ angular.module('woin-character')
       return _.size($scope.character[KEY]) === 0;
     };
 
-
-
-    $scope.incrementItem = function (KEY, itemKey, value, isEquipment) {
+    var getRef = function(KEY, isEquipment) {
       var ref;
-      if(!value) value = 1;
-      if(isEquipment) {
-        console.log("Equipment:")
-        console.log($scope.character.equipment)
+      if (isEquipment) {
         ref = $scope.character.equipment[KEY];
-        console.log("Key:" + KEY);
-        console.log("Ref:");
-        console.log(ref);
       } else {
         if(!$scope.character[KEY]) $scope.character[KEY] = {};
         ref = $scope.character[KEY];
       }
+      return ref;
+    };
+
+
+    $scope.incrementItem = function (KEY, itemKey, value, isEquipment) {
+      var ref = getRef(KEY, isEquipment);
+      if(!value) value = 1;
       if (!ref[itemKey]) ref[itemKey] = 0;
       ref[itemKey] += value;
-
       if(_.isNaN(ref[itemKey])) ref[itemKey] = 0;
     };
 
@@ -322,9 +320,8 @@ angular.module('woin-character')
     };
 
     $scope.decrementItem = function (KEY, itemKey, value, isEquipment) {
+      var ref = getRef(KEY, isEquipment);
       if(!value) value = 1;
-      var ref = $scope.character[KEY];
-      if(isEquipment) ref = ref.equipment;
       ref[itemKey] -= value;
       if (ref[itemKey] <= 0 || _.isNaN(ref[itemKey])) delete ref[itemKey];
     };

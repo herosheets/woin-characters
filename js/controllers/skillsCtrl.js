@@ -86,14 +86,21 @@ angular.module('woin-character')
       var choices = [];
 
       console.log("Current careers:");
-      console.log($scope.character.careers);
-      angular.forEach($scope.character.careers, function(career) {
-        choices.push(newChoice(career['Skill Choices'], 'Career', career.Career));
+      console.log($scope.character.Careers);
+      angular.forEach($scope.character.Careers, function(qty, career) {
+        var localChoices = $scope.careerHash[career]['Skill Choices'];
+        for (i = 0; i < qty; i++) {
+          var idx = (i + 1) * 2;
+          choices.push(newChoice(localChoices, 'Career', career + "-" + (idx - 1)));
+          choices.push(newChoice(localChoices, 'Career', career + "-" + (idx)));
+        }
       });
       console.log("Current race:");
       console.log($scope.character.race);
       if ($scope.character.race !== undefined) {
-        choices.push(newChoice($scope.character.race['Skill Choices'], 'Race', $scope.character.race.Race));
+        choices.push(newChoice($scope.character.race['Skill Choices'], 'Race', $scope.character.race.Race + "-1"));
+        choices.push(newChoice($scope.character.race['Skill Choices'], 'Race', $scope.character.race.Race + "-2"));
+        choices.push(newChoice($scope.character.race['Skill Choices'], 'Race', $scope.character.race.Race + "-3"));
       };
       console.log("Current origin:");
       console.log($scope.character.origin);
