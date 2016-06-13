@@ -114,7 +114,7 @@ angular.module('woin-character').service('Components',
         scope.armorHash = {};
         scope.cyberneticHash = {};
 
-        var doDownload = location.hostname === 'characters.enworld.org';
+        var doDownload = true; // location.hostname === 'characters.enworld.org';
         var getUrl = function (file) {
           return './character_data/' + file + '.csv';
         };
