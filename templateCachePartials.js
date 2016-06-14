@@ -46,6 +46,7 @@ module.run(['$templateCache', function($templateCache) {
     '<h2>Careers</h2>\n' +
     '<p class="explainer">\n' +
     '   Choose four careers\n' +
+    '    <div ng-if="atMaxCareers()">Your additional careers cost {{ calculateCareerXpCost() }} XP.</div>\n' +
     '</p>\n' +
     '\n' +
     '<table class="table table-striped">\n' +
@@ -89,7 +90,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '        <tr ng-repeat="c in careers">\n' +
-    '            <td><button type="button" class="btn btn-primary" ng-disabled="atMaxCareers()" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>\n' +
+    '            <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>\n' +
     '            <td>{{ c.Career }}</td>\n' +
     '            <td>{{ printAttributes(c.Attributes) }}</td>\n' +
     '            <td>{{ c[\'Skill Choices\'] }}</td>\n' +
