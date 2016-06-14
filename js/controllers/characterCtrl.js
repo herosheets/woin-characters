@@ -275,6 +275,9 @@ angular.module('woin-character')
           console.log(error);
           return 0;
         }
+      },
+      totalCareers: function() {
+        return _.reduce(_.values(this.careers), function(prev, cur) { return prev + cur; }, 0);
       }
     };
 
