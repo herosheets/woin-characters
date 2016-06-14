@@ -1,6 +1,7 @@
 <h2>Careers</h2>
 <p class="explainer">
    Choose four careers
+    <div ng-if="atMaxCareers()">Your additional careers cost {{ calculateCareerXpCost() }} XP.</div>
 </p>
 
 <table class="table table-striped">
@@ -44,7 +45,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="c in careers">
-            <td><button type="button" class="btn btn-primary" ng-disabled="atMaxCareers()" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>
+            <td><button type="button" class="btn btn-primary" ng-click="incrementItem(KEY, c.Career, 1)">+</button></td>
             <td>{{ c.Career }}</td>
             <td>{{ printAttributes(c.Attributes) }}</td>
             <td>{{ c['Skill Choices'] }}</td>

@@ -257,6 +257,24 @@ angular.module('woin-character')
           equipment.push(character.equipment.mount.Automobile);
         }
         return equipment;
+      },
+      calculateCareerXpCost: function() {
+        var character = this;
+        var total = 0;
+        try {
+          angular.forEach(character.careers, function(value, key) {
+            for (var i = value; i >= 1; i--) {
+              total = total + (10*i);
+            }
+          });
+          if (total < 40) {
+            total = 40;
+          }
+          return total - 40;
+        } catch(error) {
+          console.log(error);
+          return 0;
+        }
       }
     };
 
