@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="r in races">
-        <td><input type="radio" ng-model="character.race" ng-value="r"></td>
+        <td><input type="radio" ng-model="character.race" ng-value="r" ng-change="changeRace()"></td>
         <td ng-bind="r.Race"></td>
         <td ng-bind="r.Size"></td>
         <td ng-bind="printAttributes(r.Attributes)"></td>
