@@ -916,7 +916,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="c in character.exploits">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)">Remove</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)" ng-disabled="isRaceExploit(c.Exploit)">Remove</button></td>\n' +
     '        <td ng-bind="c.Exploit"></td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
     '    </tr>\n' +
@@ -935,7 +935,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="c in localExploits">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="addItem(c)">Add</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="addItem(c)" ng-disabled="!canAddMoreItems()">Add</button></td>\n' +
     '        <td>{{c.Exploit}}</td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
     '    </tr>\n' +
@@ -1159,7 +1159,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="r in races">\n' +
-    '        <td><input type="radio" ng-model="character.race" ng-value="r"></td>\n' +
+    '        <td><input type="radio" ng-model="character.race" ng-value="r" ng-change="changeRace()"></td>\n' +
     '        <td ng-bind="r.Race"></td>\n' +
     '        <td ng-bind="r.Size"></td>\n' +
     '        <td ng-bind="printAttributes(r.Attributes)"></td>\n' +
