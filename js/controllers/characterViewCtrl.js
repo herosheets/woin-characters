@@ -189,8 +189,13 @@ angular.module('woin-character')
 
     $scope.printCareers = function() {
       var str = "";
-      angular.forEach($scope.character.careers, function(career) {
-        str += career.Career + ", ";
+      str += "Total careers: " + $scope.character.totalCareers() + ". ";
+      angular.forEach($scope.character.careers, function(value, key) {
+        str += key;
+        if (value > 1) {
+          str += " (" + value + " ranks)";
+        }
+        str += ", ";
       });
       str = str.replace(new RegExp(', ' + '$'), '.');
       return str;

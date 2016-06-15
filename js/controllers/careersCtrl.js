@@ -25,4 +25,8 @@ angular.module('woin-character')
 
       return printString.substring(0, printString.length - 2);
     };
+
+    $scope.calculateCareerXpCost = function() {
+      return $scope.character.calculateCareerXpCost();
+    }
   });
