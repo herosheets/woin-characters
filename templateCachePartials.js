@@ -905,6 +905,16 @@ module.run(['$templateCache', function($templateCache) {
     '<h2>Exploits</h2>\n' +
     '<p class="explainer">\n' +
     '    Exploits are exploitable.\n' +
+    '</p>\n' +
+    '\n' +
+    '<h3>Aim or Feint</h3>\n' +
+    '<p class="explainer">\n' +
+    '    Please choose either Aim or Feint: <div class="btn-group">\n' +
+    '    <button type="button" class="btn btn-primary" ng-click="chooseAimOrFeint(\'Aim\', \'Feint\')">Aim</button>\n' +
+    '    <button type="button" class="btn btn-primary" ng-click="chooseAimOrFeint(\'Feint\', \'Aim\')">Feint</button>\n' +
+    '</div>\n' +
+    '</p>\n' +
+    '\n' +
     '<h3>Your Exploits</h3>\n' +
     '<table class="table table-striped">\n' +
     '    <thead>\n' +
@@ -935,7 +945,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="c in localExploits">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="addItem(c)" ng-disabled="!canAddMoreItems()">Add</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="addItem(c)" ng-disabled="!canAddMoreItems() || !canChoose(c)">Add</button></td>\n' +
     '        <td>{{c.Exploit}}</td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
     '    </tr>\n' +
