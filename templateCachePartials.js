@@ -1239,3 +1239,35 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
+
+(function(module) {
+try {
+  module = angular.module('characterPartials');
+} catch (e) {
+  module = angular.module('characterPartials', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/partials/trait.html',
+    '<h2>Trait</h2>\n' +
+    '<p class="explainer">\n' +
+    '  Your trait is a thing that shows how traity you are.\n' +
+    '</p>\n' +
+    '<table class="table table-striped">\n' +
+    '    <thead>\n' +
+    '    <tr>\n' +
+    '        <th></th>\n' +
+    '        <th>Trait</th>\n' +
+    '        <th>Benefit</th>\n' +
+    '    </tr>\n' +
+    '    </thead>\n' +
+    '    <tbody>\n' +
+    '    <tr ng-repeat="trait in allTraits()">\n' +
+    '        <td><input type="radio" ng-model="character.Trait" ng-value="trait"></td>\n' +
+    '        <td>{{trait}}</td>\n' +
+    '        <td>{{traitsHash[trait].Benefit}}</td>\n' +
+    '    </tr>\n' +
+    '    </tbody>\n' +
+    '</table>\n' +
+    '');
+}]);
+})();
