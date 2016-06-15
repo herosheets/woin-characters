@@ -145,6 +145,12 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 					content: { controller: "ChiCtrl", templateUrl: '/partials/chi.html' }
 				}
 			})
+			.state('main.trait', {
+				url: 'trait',
+				views: {
+					content: { controller: "TraitCtrl", templateUrl: '/partials/trait.html' }
+				}
+			})
 			.state('main.character', {
 				url: 'character',
 				views: {
@@ -153,6 +159,7 @@ angular.module('woin-character', ['characterPartials', 'ui.bootstrap', 'ui.route
 			})
 		;
 	});
+
 
 require('components');
 require('characterCtrl');
@@ -163,7 +170,7 @@ require('homelandCtrl');
 require('originCtrl');
 require('careersCtrl');
 require('exploitsCtrl');
-require('traitsCtrl');
+require('traitCtrl');
 require('derivedCtrl');
 require('equipmentCtrl');
 require('psionicsCtrl');

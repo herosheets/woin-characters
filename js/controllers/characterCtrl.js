@@ -178,6 +178,7 @@ var tabs = [
   {heading: 'Equipment - Weapons', route: 'main.eq-weapons'},
   {heading: 'Equipment - Cybernetics', route: 'main.eq-cybernetics'},
   {heading: 'Equipment - Mounts & Vehicles', route: 'main.eq-mounts'},
+  {heading: 'Trait', route: 'main.trait'},
   {heading: 'Your Character', route: 'main.character'}
 ];
 
@@ -192,13 +193,13 @@ angular.module('woin-character')
   .controller('SidenavCtrl', ['$scope', function($scope) {
       $scope.tabs = tabs;
   }])
-  .controller('characterCtrl', ['$scope', 'Components', 'Sidenav', function characterCtrl($scope, Components, Sidenav) {
+  .controller('characterCtrl', ['$scope', '$rootScope', 'Components', 'Sidenav', function characterCtrl($scope, $rootScope, Components, Sidenav) {
     'use strict';
 
     // initialize data
     $scope.toggleSidenav = Sidenav.toggle;
     $scope.tabs = tabs;
-    $scope.character = {
+    $scope.character = $rootScope.character = {
       name: "",
       description: "",
       career: [],
@@ -281,7 +282,7 @@ angular.module('woin-character')
       }
     };
 
-    Components.loadCsvData($scope);
+    Components.loadCsvData($rootScope);
 
     $scope.addQuantitied = function (component, key, item) {
       if (component[key] === undefined) {

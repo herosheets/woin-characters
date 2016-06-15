@@ -107,7 +107,7 @@ angular.module('woin-character').service('Components',
         scope.origins = [];
         scope.psionics = [];
         scope.races = [];
-        scope.traints = [];
+        scope.traits = [];
         scope.generalHash = {};
         scope.gearHash = {};
         scope.weaponHash = {};
@@ -282,7 +282,7 @@ angular.module('woin-character').service('Components',
           dynamicTyping: true,
           step: function (row) {
             scope.traits.push(row.data[0]);
-            var KEY = 'Traits';
+            var KEY = 'Trait';
             scope.traitsHash = {};
             _.each(scope.traits, function (item) {
               scope.traitsHash[item[KEY]] = item;

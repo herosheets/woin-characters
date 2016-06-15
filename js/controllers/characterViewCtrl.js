@@ -2,17 +2,39 @@
 angular = require('angular');
 
 angular.module('woin-character')
-  .controller('CharacterViewCtrl', function CharacterViewCtrl($scope) {
-    $scope = $scope.$parent;
+    .service('StatCalc', ['$rootScope', function($rootScope) {
 
-    var calcStatsForCareer = function(career) {
-      var careerStats = _.reduce(career.Attributes.split(','), function(prev, stat) {
-          var statSplit = stat.split(':');
-          prev[statSplit[0].toUpperCase()] = +statSplit[1];
-          return prev;
-      }, {});
-      return careerStats;
-    };
+        var calcStatsForCareer = function(career) {
+            var careerStats = _.reduce(career.Attributes.split(','), function(prev, stat) {
+                var statSplit = stat.split(':');
+                prev[statSplit[0].toUpperCase()] = +statSplit[1];
+                return prev;
+            }, {});
+            return careerStats;
+        };
+
+        var getFromCybernetics = function(type, search, isDice) {
+            return _.reduce(_.keys(_.get($rootScope, 'character.Cybernetics.equipment', {})), function(prev, key) {
+                var ref = _.find($rootScope.equipment.cybernetics, { Enhancement: key });
+                var val = ref[type] === search ? ref[type+'_bonus'] : '0';
+                if(isDice && _.contains(val, 'd')) return prev + +val.split('d')[0];
+                return prev + +val;
+            }, 0);
+        };
+
+        return {
+            calcStat: function(stat) {
+                var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
+                base += _.reduce(_.keys($rootScope.character.careers), function(prev, cur) {
+                    return prev + (calcStatsForCareer($rootScope.careerHash[cur])[stat] * $rootScope.character.careers[cur] || 0);
+                }, 0);
+                return base + (getFromCybernetics('stat', stat, false) || 0);
+            },
+            getFromCybernetics: getFromCybernetics
+        };
+    }])
+  .controller('CharacterViewCtrl', function CharacterViewCtrl($scope, StatCalc) {
+    $scope = $scope.$parent;
 
     var getDiceForStat = function(stat) {
         if(stat < 3)  return 1;
@@ -22,37 +44,22 @@ angular.module('woin-character')
         return 5;
     };
 
-      var getFromCybernetics = function(type, search, isDice) {
-          return _.reduce(_.keys(_.get($scope, 'character.Cybernetics.equipment', {})), function(prev, key) {
-              var ref = _.find($scope.equipment.cybernetics, { Enhancement: key });
-              var val = ref[type] === search ? ref[type+'_bonus'] : '0';
-              if(isDice && _.contains(val, 'd')) return prev + +val.split('d')[0];
-              return prev + +val;
-          }, 0);
-      };
-
     $scope.getSOAK = function() {
-        return _.get($scope, 'character.equipment.armor.SOAK', 0) + getFromCybernetics('defense', 'SOAK', false);
+        return _.get($scope, 'character.equipment.armor.SOAK', 0) + StatCalc.getFromCybernetics('defense', 'SOAK', false);
     };
 
     $scope.getVULN = function() {
         return _.get($scope, 'character.equipment.armor.Vulnerable', '-');
     };
 
-    $scope.getStatForCharacter = function(stat) {
-        var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
-        base += _.reduce(_.keys($scope.character.careers), function(prev, cur) {
-            return prev + (calcStatsForCareer($scope.careerHash[cur])[stat] * $scope.character.careers[cur] || 0);
-        }, 0);
-        return base + (getFromCybernetics('stat', stat, false) || 0);
-    };
+    $scope.getStatForCharacter = StatCalc.calcStat;
 
     $scope.getDiceValueForCharacter = function(stats) {
         if(!_.isArray(stats)) stats = [stats];
 
         var base = 0;
         base += _.reduce(stats, function(prev, cur) {
-            return prev + getDiceForStat($scope.getStatForCharacter(cur)) + (getFromCybernetics('stat', cur, true) || 0);
+            return prev + getDiceForStat($scope.getStatForCharacter(cur)) + (StatCalc.getFromCybernetics('stat', cur, true) || 0);
         }, 0);
         return base;
     };
