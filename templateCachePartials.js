@@ -101,7 +101,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <td>{{ printAttributes(c.Attributes) }}</td>\n' +
     '            <td>{{ c[\'Skill Choices\'] }}</td>\n' +
     '            <td>{{ c.Description }}</td>\n' +
-    '            <td>{{ c.Exploits }}</td>\n' +
+    '            <td>{{ exploitsFilteredRequirements(c) }}</td>\n' +
     '            <td>{{ c.Years }}</td>\n' +
     '        </tr>\n' +
     '    </tbody>\n' +
