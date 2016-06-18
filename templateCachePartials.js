@@ -19,10 +19,16 @@ module.run(['$templateCache', function($templateCache) {
     '</div>\n' +
     '\n' +
     '<div class="row display-row">\n' +
-    '    <div class="col-md-3">Age</div>\n' +
+    '    <div class="col-md-3">Age - minimum {{ character.calculateMinimumAge() }} </div>\n' +
     '    <div class="col-md-9">\n' +
-    '        <input class="form-control" type="number" ng-model="character.age">\n' +
+    '        <input class="form-control"\n' +
+    '               type="number"\n' +
+    '               ng-model="character.age"\n' +
+    '               min="character.calculateMinimumAge()">\n' +
     '    </div>\n' +
+    '    <p ng-if="(character.race !== undefined && character.age !== undefined)">\n' +
+    '        This age makes your character {{ character.calculateAgeRange() }}\n' +
+    '    </p>\n' +
     '</div>\n' +
     '\n' +
     '<div class="row display-row margin-top-15">\n' +
@@ -166,14 +172,14 @@ module.run(['$templateCache', function($templateCache) {
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
-    '                <td colspan="17" height="17" align="left" bgcolor="#dddddd">A\n' +
+    '                <td colspan="17" height="17" align="left" bgcolor="#dddddd">\n' +
     '                    <em>\n' +
-    '                       {{ character.hook }}\n' +
+    '                       A {{ character.hook }}\n' +
     '                    </em><br/>\n' +
     '                    <em>\n' +
     '                        <!-- what is this? -->\n' +
     '                        Small sentient humanoid (grade 5; max dice pool 5d6)\n' +
-    '                    </em>\n' +
+    '                    </em><br/>\n' +
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
@@ -280,7 +286,7 @@ module.run(['$templateCache', function($templateCache) {
     '       \n' +
     '        <div class="well">\n' +
     '            <p>{{ character.description }}</p>\n' +
-    '            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }}</p>\n' +
+    '            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '\n' +
