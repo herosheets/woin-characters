@@ -22,15 +22,28 @@ angular.module('woin-character')
             }, 0);
         };
 
+        var getFromRace = function(race) {
+          var raceStats = _.reduce(race.Attributes.split(','), function(prev, stat) {
+            var statSplit = stat.split(':');
+            prev[statSplit[0].toUpperCase()] = +statSplit[1];
+            return prev;
+          }, {});
+          return raceStats;
+        };
+
         return {
             calcStat: function(stat) {
                 var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
                 base += _.reduce(_.keys($rootScope.character.careers), function(prev, cur) {
                     return prev + (calcStatsForCareer($rootScope.careerHash[cur])[stat] * $rootScope.character.careers[cur] || 0);
                 }, 0);
+                if ($rootScope.character.race !== undefined) {
+                  base += (getFromRace($rootScope.character.race)[stat] || 0);
+                }
                 return base + (getFromCybernetics('stat', stat, false) || 0);
             },
-            getFromCybernetics: getFromCybernetics
+            getFromCybernetics: getFromCybernetics,
+            getFromRace: getFromRace
         };
     }])
   .controller('CharacterViewCtrl', function CharacterViewCtrl($scope, StatCalc) {
