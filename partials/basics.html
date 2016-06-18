@@ -18,6 +18,9 @@
                ng-model="character.age"
                min="character.calculateMinimumAge()">
     </div>
+    <p ng-if="(character.race !== undefined && character.age !== undefined)">
+        This age makes your character {{ character.calculateAgeRange() }}
+    </p>
 </div>
 
 <div class="row display-row margin-top-15">

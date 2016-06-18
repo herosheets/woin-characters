@@ -31,14 +31,14 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="17" height="17" align="left" bgcolor="#dddddd">A
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
                     <em>
-                       {{ character.hook }}
+                       A {{ character.hook }}
                     </em><br/>
                     <em>
                         <!-- what is this? -->
                         Small sentient humanoid (grade 5; max dice pool 5d6)
-                    </em>
+                    </em><br/>
                 </td>
             </tr>
             <tr>
@@ -145,7 +145,7 @@
        
         <div class="well">
             <p>{{ character.description }}</p>
-            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }}</p>
+            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>
         </div>
     </div>
 

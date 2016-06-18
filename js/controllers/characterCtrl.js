@@ -292,6 +292,18 @@ angular.module('woin-character')
         });
 
         return minimumAge;
+      },
+      calculateAgeRange: function() {
+        var character = this;
+        var min = parseInt(character.race.adult_range.split('-')[0]);
+        var max = parseInt(character.race.adult_range.split('-')[1]);
+        if (character.age < min) {
+          return "Young";
+        }
+        if (character.age > max) {
+          return "Old";
+        }
+        return "Adult";
       }
     };
 
