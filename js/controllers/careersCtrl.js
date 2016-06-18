@@ -2,7 +2,8 @@
 angular = require('angular');
 
 angular.module('woin-character')
-  .controller('CareersCtrl', function CareersCtrl($scope) {
+  .controller('CareersCtrl', ['ExploitService', '$scope', function CareersCtrl(ExploitService, $scope) {
+
     var KEY = $scope.KEY = 'careers';
 
     var deleteFromArray = function(array, c) {
@@ -26,7 +27,15 @@ angular.module('woin-character')
       return printString.substring(0, printString.length - 2);
     };
 
+    $scope.exploitsFilteredRequirements = function(career) {
+      var exploits = career.Exploits.split(',');
+      return _.filter(exploits, function(exploit) {
+        return ExploitService.meetsCareerRequirements($scope.character, exploit, $scope.exploitsHash);
+      });
+    };
+
     $scope.calculateCareerXpCost = function() {
       return $scope.character.calculateCareerXpCost();
-    }
-  });
+    };
+
+  }]);

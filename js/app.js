@@ -175,3 +175,4 @@ require('derivedCtrl');
 require('equipmentCtrl');
 require('psionicsCtrl');
 require('chiCtrl');
+require('exploitService');
