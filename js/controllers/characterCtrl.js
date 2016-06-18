@@ -279,6 +279,19 @@ angular.module('woin-character')
       },
       totalCareers: function() {
         return _.reduce(_.values(this.careers), function(prev, cur) { return prev + cur; }, 0);
+      },
+      calculateMinimumAge: function() {
+        var minimumAge = 0;
+        var character = this;
+        var careerAge = function(career) {
+          return parseInt(career.Years.toString().split('d')[0]);
+        };
+
+        angular.forEach(character.careers, function(value, key) {
+          minimumAge += (careerAge($scope.careerHash[key]) * value);
+        });
+
+        return minimumAge;
       }
     };
 
