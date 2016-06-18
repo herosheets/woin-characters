@@ -42,7 +42,7 @@ angular.module('woin-character')
 
         var maxStatsCalc = _.filter(maxStats, function(stat) { return StatCalc.calcStat(stat) === maxStatNum; });
         var minStatsCalc = _.filter(minStats, function(stat) { return StatCalc.calcStat(stat) === minStatNum; });
-        
+
         var maxStatTraits = _.map(maxStatsCalc, function(stat) { return maxStatHash[stat][maxStatNum]; });
         var minStatTraits = _.map(minStatsCalc, function(stat) { return minStatHash[stat][maxStatNum]; });
 
