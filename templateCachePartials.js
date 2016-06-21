@@ -950,7 +950,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="c in localExploits">\n' +
+    '    <tr ng-repeat="c in localExploits | isUniversalExploit ">\n' +
     '        <td><button type="button" class="btn btn-primary" ng-click="addItem(c)" ng-disabled="!canAddMoreItems() || !canChoose(c)">Add</button></td>\n' +
     '        <td>{{c.Exploit}}</td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
