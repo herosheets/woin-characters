@@ -17,7 +17,13 @@
     <tr ng-repeat="item in homelands">
         <td><input type="radio" ng-value="item" ng-model="character.homeworld"></td>
         <td>{{item.Homeworld}}</td>
-        <td>{{item['Bonus Skill']}}</td>
+        <td ng-if="item.bonus_skill_options.length === 1">{{ item['Bonus Skill'] }}</td>
+        <td ng-if="item.bonus_skill_options.length > 1">
+            <select
+                    ng-model="item.chosen_bonus_skill"
+                    ng-options="choize for choize in item.bonus_skill_options">
+            </select>
+        </td>
     </tr>
     </tbody>
 </table>

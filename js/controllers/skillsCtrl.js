@@ -43,10 +43,8 @@ angular.module('woin-character')
     };
 
     var addBonusSkill = function() {
-      console.log("Adding bonus skill: ");
-      console.log($scope.character.homeworld['Bonus Skill']);
       if ($scope.character.homeworld !== undefined) {
-        upgradeSkill($scope.character.homeworld['Bonus Skill'], $scope.character.skills);
+        upgradeSkill($scope.character.homeworld.chosen_bonus_skill, $scope.character.skills);
       }
     };
 
