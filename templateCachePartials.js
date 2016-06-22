@@ -1016,7 +1016,13 @@ module.run(['$templateCache', function($templateCache) {
     '    <tr ng-repeat="item in homelands">\n' +
     '        <td><input type="radio" ng-value="item" ng-model="character.homeworld"></td>\n' +
     '        <td>{{item.Homeworld}}</td>\n' +
-    '        <td>{{item[\'Bonus Skill\']}}</td>\n' +
+    '        <td ng-if="item.bonus_skill_options.length === 1">{{ item[\'Bonus Skill\'] }}</td>\n' +
+    '        <td ng-if="item.bonus_skill_options.length > 1">\n' +
+    '            <select\n' +
+    '                    ng-model="item.chosen_bonus_skill"\n' +
+    '                    ng-options="choize for choize in item.bonus_skill_options">\n' +
+    '            </select>\n' +
+    '        </td>\n' +
     '    </tr>\n' +
     '    </tbody>\n' +
     '</table>\n' +
