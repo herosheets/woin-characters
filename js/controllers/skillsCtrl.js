@@ -44,7 +44,7 @@ angular.module('woin-character')
 
     var addBonusSkill = function() {
       console.log("Adding bonus skill: ");
-      console.log($scope.character.homeworld);
+      console.log($scope.character.homeworld['Bonus Skill']);
       if ($scope.character.homeworld !== undefined) {
         upgradeSkill($scope.character.homeworld['Bonus Skill'], $scope.character.skills);
       }
@@ -69,16 +69,17 @@ angular.module('woin-character')
     }
 
     var upgradeSkill = function(skill, skills) {
+      var downcasedName = skill.toLowerCase();
       var found = false;
       angular.forEach(skills, function(s) {
-        if (s.name === skill) {
+        if (s.name === downcasedName) {
           s.rank += 1;
           found = true;
         }
       });
 
       if (found === false) {
-        skills.push( { rank: 1, name: skill, dicePool: getSkillDicePool });
+        skills.push( { rank: 1, name: downcasedName, dicePool: getSkillDicePool });
       }
     };
 
