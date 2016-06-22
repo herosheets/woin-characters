@@ -1014,7 +1014,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="item in homelands">\n' +
-    '        <td><input type="radio" ng-value="item.Homeworld" ng-model="character.homeworld"></td>\n' +
+    '        <td><input type="radio" ng-value="item" ng-model="character.homeworld"></td>\n' +
     '        <td>{{item.Homeworld}}</td>\n' +
     '        <td>{{item[\'Bonus Skill\']}}</td>\n' +
     '    </tr>\n' +
