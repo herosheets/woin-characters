@@ -31,6 +31,15 @@ angular.module('woin-character')
           return raceStats;
         };
 
+        var getFromOrigin = function(origin) {
+          var originStats = _.reduce(origin.Attributes.split(','), function(prev, stat) {
+            var statSplit = stat.split(':');
+            prev[statSplit[0].toUpperCase()] = +statSplit[1];
+            return prev;
+          }, {});
+          return originStats;
+        };
+
         return {
             calcStat: function(stat) {
                 var base = _.contains(['REP', 'CHI', 'MAG', 'PSI'], stat) ? 0 : 3;
@@ -39,6 +48,9 @@ angular.module('woin-character')
                 }, 0);
                 if ($rootScope.character.race !== undefined) {
                   base += (getFromRace($rootScope.character.race)[stat] || 0);
+                }
+                if ($rootScope.character.origin !== undefined) {
+                  base += (getFromOrigin($rootScope.character.origin)[stat] || 0);
                 }
                 return base + (getFromCybernetics('stat', stat, false) || 0);
             },

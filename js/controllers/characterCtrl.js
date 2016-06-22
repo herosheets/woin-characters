@@ -283,13 +283,35 @@ angular.module('woin-character')
       calculateMinimumAge: function() {
         var minimumAge = 0;
         var character = this;
+
+        // TODO: actually roll these dice instead of parsing
         var careerAge = function(career) {
           return parseInt(career.Years.toString().split('d')[0]);
+        };
+        
+        var originAge = function(origin) {
+          if (origin !== undefined) {
+            var modifier = 0;
+            var tokens = origin.Years.toString().split('+');
+            if (tokens.length > 1) {
+              modifier = parseInt(tokens[1]);
+            }
+            var base = 0;
+            var tokens = origin.Years.toString().split('d');
+            base = parseInt(tokens[0]);
+
+            return base + modifier;
+          } else {
+            return 0;
+          }
         };
 
         angular.forEach(character.careers, function(value, key) {
           minimumAge += (careerAge($scope.careerHash[key]) * value);
         });
+       
+        minimumAge += originAge($scope.character.origin);
+        
 
         return minimumAge;
       },
