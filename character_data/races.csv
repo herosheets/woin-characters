@@ -1,5 +1,5 @@
 Race,Size,Attributes,Skill Choices,Exploits,adult_range
-Android,Any,"Str:2,log:2,luc:-3","computers, engineering, running, linguistics, [technical]","Mindless, Deterministic, Electronic Vulnerability, Automaton, Upgrades",0-9999999
+Android,Any,"str:2,log:2,luc:-3","computers, engineering, running, linguistics, [technical]","Mindless, Deterministic, Electronic Vulnerability, Automaton, Upgrades",0-9999999
 Borian,Small,"end:1,int:1,cha:1,rep:1","carousing, hardy, [crafting], engineering, appraisal","Darksight, Iron Constitution",90-209
 Felan,Medium,"agi:2,int:1,cha:1,luc:1","acrobatics, climbing, jumping, [unarmed fighting], reactions, appraisal","Fast, Jumper, Land On Your Feet, Claws",12-29
 Grand Elf,Medium,"agi:2,log:2,luc:-2,mag:3","[musical], alchemy, intimidate, law, leadership, muskets, pistols, sailing, swords","Cultural Weapon, Fey, Magic Sense, Meditation, Naturally Magical",190-549
