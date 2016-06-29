@@ -290,6 +290,9 @@ module.run(['$templateCache', function($templateCache) {
     '        <div class="well">\n' +
     '            <p>{{ character.description }}</p>\n' +
     '            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>\n' +
+    '            <p style="color:red;" ng-if="character.age < character.minimumAge">\n' +
+    '                Overrode minimum age dice rolls.\n' +
+    '            </p>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '\n' +
