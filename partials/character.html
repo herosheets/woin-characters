@@ -146,6 +146,9 @@
         <div class="well">
             <p>{{ character.description }}</p>
             <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>
+            <p style="color:red;" ng-if="character.age < character.minimumAge">
+                Overrode minimum age dice rolls.
+            </p>
         </div>
     </div>
 
