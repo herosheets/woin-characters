@@ -22,7 +22,8 @@ angular.module('woin-character')
         $scope.character.exploits.push($scope.exploitsHash[career._currentExploit]);
         $rootScope.careerExploitStrings.push(career._currentExploit);
 
-        career._currentExploit = null;
+        career._currentExploit = null
+        $scope.character.calculateMinimumAge();
     };
 
     $scope.removeCareer = function(careerName, exploitLost) {
@@ -31,6 +32,7 @@ angular.module('woin-character')
         $rootScope.careerExploitStrings = _.reject($rootScope.careerExploitStrings, function(carObj) { return carObj.exploit === exploitLost; });
         $scope.character.exploits = _.reject(career._currentExploit, function(car) { return car.Exploit === exploitLost; });
         $rootScope.careerExploits = _.reject(career._currentExploit, function(car) { return car === exploitLost; });
+        $scope.character.calculateMinimumAge();
     };
 
     $scope.printAttributes = function(attributeString) {

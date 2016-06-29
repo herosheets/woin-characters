@@ -11,13 +11,16 @@
 </div>
 
 <div class="row display-row">
-    <div class="col-md-3">Age - minimum {{ character.calculateMinimumAge() }} </div>
+    <div class="col-md-3">Age - minimum {{ character.minimumAge }} </div>
     <div class="col-md-9">
         <input class="form-control"
                type="number"
                ng-model="character.age"
-               min="character.calculateMinimumAge()">
+               min="character.minimumAge">
     </div>
+    <p style="color:red;" ng-if="character.age < character.minimumAge">
+        Please select an age greater than or equal to the minimum age.
+    </p>
     <p ng-if="(character.race !== undefined && character.age !== undefined)">
         This age makes your character {{ character.calculateAgeRange() }}
     </p>

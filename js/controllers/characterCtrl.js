@@ -204,6 +204,7 @@ angular.module('woin-character')
       description: "",
       career: [],
       skills: [],
+      minimumAge: 0,
       equipment: {
         Gear: {},
         Armor: {},
@@ -281,39 +282,61 @@ angular.module('woin-character')
         return _.reduce(_.values(this.careers), function(prev, cur) { return prev + cur; }, 0);
       },
       calculateMinimumAge: function() {
-        var minimumAge = 0;
+        var minimumAge = {
+          sixes: 0,
+          mod: 0,
+          diceString: function() {
+            return this.sixes + "d6 +" + this.mod;
+          }
+        };
         var character = this;
 
-        // TODO: actually roll these dice instead of parsing
-        var careerAge = function(career) {
-          return parseInt(career.Years.toString().split('d')[0]);
-        };
-        
-        var originAge = function(origin) {
-          if (origin !== undefined) {
-            var modifier = 0;
-            var tokens = origin.Years.toString().split('+');
-            if (tokens.length > 1) {
-              modifier = parseInt(tokens[1]);
-            }
-            var base = 0;
-            var tokens = origin.Years.toString().split('d');
-            base = parseInt(tokens[0]);
-
-            return base + modifier;
+        var addAge = function(age, str) {
+          var tokens = str.split('+');
+          var noplus, nod = false;
+          if (tokens.length > 1) {
+            age.mod += parseInt(tokens[1]);
           } else {
-            return 0;
+            noplus = true;
+          }
+          var tokens = str.split('d');
+          if (tokens.length > 1) {
+            age.sixes += parseInt(tokens[0]);
+          } else {
+            nod = true;
+          }
+          if (noplus && nod) {
+            // some static string
+            age.mod += parseInt(str);
+          }
+        };
+
+        // TODO: actually roll these dice instead of parsing
+        var addCareerAge = function(age, career) {
+          if (career.Years !== undefined) {
+            addAge(age, career.Years.toString());
+          }
+        };
+
+        var addOriginAge = function(age, origin) {
+          if (origin !== undefined) {
+            addAge(age, origin.Years);
           }
         };
 
         angular.forEach(character.careers, function(value, key) {
-          minimumAge += (careerAge($scope.careerHash[key]) * value);
+          for (var i = 0; i < value; i++) {
+            addCareerAge(minimumAge, $scope.careerHash[key]);
+          }
         });
-       
-        minimumAge += originAge($scope.character.origin);
-        
 
-        return minimumAge;
+        if (character.origin !== undefined) {
+          addOriginAge(minimumAge, $scope.character.origin);
+        };
+
+        var actualage = dice.roll(minimumAge.diceString());
+
+        character.minimumAge = actualage;
       },
       calculateAgeRange: function() {
         var character = this;
