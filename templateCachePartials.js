@@ -19,13 +19,16 @@ module.run(['$templateCache', function($templateCache) {
     '</div>\n' +
     '\n' +
     '<div class="row display-row">\n' +
-    '    <div class="col-md-3">Age - minimum {{ character.calculateMinimumAge() }} </div>\n' +
+    '    <div class="col-md-3">Age - minimum {{ character.minimumAge }} </div>\n' +
     '    <div class="col-md-9">\n' +
     '        <input class="form-control"\n' +
     '               type="number"\n' +
     '               ng-model="character.age"\n' +
-    '               min="character.calculateMinimumAge()">\n' +
+    '               min="character.minimumAge">\n' +
     '    </div>\n' +
+    '    <p style="color:red;" ng-if="character.age < character.minimumAge">\n' +
+    '        Please select an age greater than or equal to the minimum age.\n' +
+    '    </p>\n' +
     '    <p ng-if="(character.race !== undefined && character.age !== undefined)">\n' +
     '        This age makes your character {{ character.calculateAgeRange() }}\n' +
     '    </p>\n' +
@@ -1085,7 +1088,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="item in origins">\n' +
-    '        <td><input type="radio" ng-value="item" ng-model="character.origin"></td>\n' +
+    '        <td><input type="radio" ng-value="item" ng-model="character.origin" ng-change="character.calculateMinimumAge()"></td>\n' +
     '        <td>{{ item.Origin }}</td>\n' +
     '        <td>{{ item.Prerequisites }}</td>\n' +
     '        <td>{{ printAttributes(item.Attributes) }}</td>\n' +
