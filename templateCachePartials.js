@@ -181,7 +181,7 @@ module.run(['$templateCache', function($templateCache) {
     '                    </em><br/>\n' +
     '                    <em>\n' +
     '                        <!-- what is this? -->\n' +
-    '                        Small sentient humanoid (grade 5; max dice pool 5d6)\n' +
+    '                        (grade {{ character.careerGrade() }} ; max dice pool {{ character.maxDicePool() }})\n' +
     '                    </em><br/>\n' +
     '                </td>\n' +
     '            </tr>\n' +
@@ -917,6 +917,11 @@ module.run(['$templateCache', function($templateCache) {
     '<h2>Exploits</h2>\n' +
     '<p class="explainer">\n' +
     '    Exploits are exploitable.\n' +
+    '    debug:\n' +
+    '    {{ universalExploits() }} : {{ xpCost() }}\n' +
+    '    <p ng-if="universalExploits().length > 1">\n' +
+    '        Your additional exploits cost an additional {{ xpCost() }} XP.\n' +
+    '    </p>\n' +
     '</p>\n' +
     '\n' +
     '<h3>Aim or Feint</h3>\n' +
@@ -937,7 +942,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </tr>\n' +
     '    </thead>\n' +
     '    <tbody>\n' +
-    '    <tr ng-repeat="c in character.exploits">\n' +
+    '    <tr ng-repeat="c in character.exploits track by $index">\n' +
     '        <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)" ng-disabled="isRaceExploit(c.Exploit) || isCareerExploit(c.Exploit)">Remove</button></td>\n' +
     '        <td ng-bind="c.Exploit"></td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
