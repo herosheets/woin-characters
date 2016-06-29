@@ -264,22 +264,35 @@ angular.module('woin-character')
         var character = this;
         var total = 0;
         try {
-          angular.forEach(character.careers, function(value, key) {
-            for (var i = value; i >= 1; i--) {
-              total = total + (10*i);
-            }
-          });
-          if (total < 40) {
-            total = 40;
+          for (var i = 1; i <= character.totalCareers(); i++) {
+            total = total + (10*i);
+          };
+          if (total < 100) {
+            total = 100;
           }
-          return total - 40;
+          return total - 100;
         } catch(error) {
           console.log(error);
           return 0;
         }
       },
+      calculateExploitXpCost: function(universalExploits) {
+        var eachCost = (this.totalCareers() + 1) * 5; // half the cost of the next grade
+        var exploitCount = universalExploits.length - 1;
+        return eachCost * exploitCount;
+      },
       totalCareers: function() {
-        return _.reduce(_.values(this.careers), function(prev, cur) { return prev + cur; }, 0);
+        if (this.careers === undefined || this.careers.length === 0) {
+          return 0;
+        } else {
+          return _.reduce(_.values(this.careers), function(prev, cur) { return prev + cur; }, 0);
+        }
+      },
+      careerGrade: function() {
+        return this.totalCareers();
+      },
+      maxDicePool: function() {
+        return this.totalCareers() + "d6";
       },
       calculateMinimumAge: function() {
         var minimumAge = {
