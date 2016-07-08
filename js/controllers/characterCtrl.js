@@ -279,7 +279,39 @@ angular.module('woin-character')
       calculateExploitXpCost: function(universalExploits) {
         var eachCost = (this.totalCareers() + 1) * 5; // half the cost of the next grade
         var exploitCount = universalExploits.length - 1;
-        return eachCost * exploitCount;
+        var subtotal = eachCost * exploitCount;
+
+        console.log("Exploits at this grade cost:" + eachCost + " & " + exploitCount + " universal exploits found = " + subtotal);
+
+        if (subtotal <= 0) {
+          return 0;
+        } else {
+          return eachCost * exploitCount;
+        }
+      },
+      getUniversalExploits: function() {
+        var character = this;
+        var exploits = [];
+        angular.forEach(character.exploits, function(e) {
+          if (e !== undefined) {
+            if (!(
+                e.Exploit === 'Aim' ||
+                e.Exploit === 'Feint' ||
+                $scope.isRaceExploit(e.Exploit) ||
+                $scope.isCareerExploit(e.Exploit)
+              )) {
+              console.log("Universal exploit found:" + e.Exploit)
+              exploits.push(e);
+            }
+          }
+        });
+        return exploits;
+      },
+      totalXpCost: function() {
+        var exploits = this.getUniversalExploits();
+        console.log("Exploit xp cost: " + this.calculateExploitXpCost(exploits) )
+        console.log("Career xp cost: " + this.calculateCareerXpCost());
+        return this.calculateExploitXpCost(exploits) + this.calculateCareerXpCost();
       },
       totalCareers: function() {
         if (this.careers === undefined || this.careers.length === 0) {
@@ -366,6 +398,9 @@ angular.module('woin-character')
     };
 
     Components.loadCsvData($rootScope);
+
+    $scope.isRaceExploit = function(exploit) { return _.contains($rootScope.raceExploits || [], exploit); };
+    $scope.isCareerExploit = function(exploit) { return _.contains($rootScope.careerExploitStrings || [], exploit); };
 
     $scope.addQuantitied = function (component, key, item) {
       if (component[key] === undefined) {

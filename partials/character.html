@@ -36,7 +36,6 @@
                        A {{ character.hook }}
                     </em><br/>
                     <em>
-                        <!-- what is this? -->
                         (grade {{ character.careerGrade() }} ; max dice pool {{ character.maxDicePool() }})
                     </em><br/>
                 </td>
@@ -148,6 +147,9 @@
             <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>
             <p style="color:red;" ng-if="character.age < character.minimumAge">
                 Overrode minimum age dice rolls.
+            </p>
+            <p>
+               Extra XP Spent: {{ character.totalXpCost() }}
             </p>
         </div>
     </div>
