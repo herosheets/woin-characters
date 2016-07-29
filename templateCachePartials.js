@@ -178,7 +178,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <tr>\n' +
     '                <td colspan="17" height="17" align="left" bgcolor="#dddddd">\n' +
     '                    <em>\n' +
-    '                       A {{ character.hook }}\n' +
+    '                       A/n {{character.Trait}} {{character.age}} year old {{character.race.Race}} with {{ character.hook }}\n' +
     '                    </em><br/>\n' +
     '                    <em>\n' +
     '                        (grade {{ character.careerGrade() }} ; max dice pool {{ character.maxDicePool() }})\n' +
