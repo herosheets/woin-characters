@@ -142,6 +142,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/partials/character.html',
+    '{{ character }}\n' +
     '<div class="row">\n' +
     '    <div class="col-md-8">\n' +
     '        <table cols="17" frame="void" rules="none" border="0" cellspacing="0">\n' +
@@ -263,7 +264,7 @@ module.run(['$templateCache', function($templateCache) {
     '                <td colspan="17" height="17" align="left">\n' +
     '                    <span style="font-weight: bold;">Skills</span>\n' +
     '                    <span ng-repeat="s in character.skills" style="font-style: italic;">\n' +
-    '                        <em>{{ s.name }}</em> ( {{ s.dicePool() }} ),\n' +
+    '                        <em>{{ s.name }} {{ s.rank }}</em> ({{ s.dicePool() }}),\n' +
     '                    </span>\n' +
     '                </td>\n' +
     '            </tr>\n' +
