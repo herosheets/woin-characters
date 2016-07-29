@@ -270,6 +270,14 @@ module.run(['$templateCache', function($templateCache) {
     '            </tr>\n' +
     '            <tr>\n' +
     '                <td colspan="17" height="17" align="left">\n' +
+    '                    <span style="font-weight: bold;">Origin</span>\n' +
+    '                    <span style="font-style: italic;">\n' +
+    '                        <em>{{character.origin.Origin}}</em>\n' +
+    '                    </span>\n' +
+    '                </td>\n' +
+    '            </tr>\n' +
+    '            <tr>\n' +
+    '                <td colspan="17" height="17" align="left">\n' +
     '                    <span style="font-weight: bold;">Gear</span>\n' +
     '                    <ul ng-repeat="e in character.printEquipment()">\n' +
     '                        <li>{{ e }}</li>\n' +
