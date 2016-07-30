@@ -223,7 +223,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </tr>\n' +
     '            <tr>\n' +
     '                <td colspan="17" height="17" align="left"><span\n' +
-    '                        style="font-weight: bold;">INITIATIVE</span> {{ getDiceForCharacter([\'INT\', \'INT\']) }}\n' +
+    '                        style="font-weight: bold;">INITIATIVE</span> {{ getDiceForCharacter([\'INT\']) }}\n' +
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
