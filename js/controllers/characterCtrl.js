@@ -162,6 +162,11 @@ var getTotalCrew = function (ship, scope) {
   }
 };
 
+var deleteFromArray = function(array, c) {
+  var index = array.indexOf(c);
+  array.splice(index, 1);
+};
+
 var tabs = [
   {heading: 'Basics', route: 'main.basics'},
   {heading: 'Hook', route: 'main.hook'},
@@ -387,11 +392,33 @@ angular.module('woin-character')
         var character = this;
         var min = parseInt(character.race.adult_range.split('-')[0]);
         var max = parseInt(character.race.adult_range.split('-')[1]);
+        
+        var hasOld = _.contains(character.exploits, $scope.exploitsHash['Old']);
+        var hasYoung = _.contains(character.exploits, $scope.exploitsHash['Young']);
+
         if (character.age < min) {
+          if(hasOld) {
+            deleteFromArray(character.exploits, $scope.exploitsHash['Old'])
+          }
+          if (!hasYoung) {
+            character.exploits.push($scope.exploitsHash['Young']);
+          }
           return "Young";
         }
         if (character.age > max) {
+          if(hasYoung) {
+            deleteFromArray(character.exploits, $scope.exploitsHash['Young'])
+          }
+          if (!hasOld) {
+            character.exploits.push($scope.exploitsHash['Old']);
+          }
           return "Old";
+        }
+        if(hasOld) {
+          deleteFromArray(character.exploits, $scope.exploitsHash['Old'])
+        }
+        if(hasYoung) {
+          deleteFromArray(character.exploits, $scope.exploitsHash['Young'])
         }
         return "Adult";
       }
