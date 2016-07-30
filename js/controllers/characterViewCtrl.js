@@ -167,6 +167,17 @@ angular.module('woin-character')
         }
       };
 
+      var raceSizes = {
+        "Tiny": 8,
+        "Small": 4,
+        "Medium": 0,
+        "Any": 0,
+        "Large": -4,
+        "Enormous": -8,
+        "Gigantic": -16,
+        "Colossal": -32
+      };
+
       var maxArray = function(array) {
         return Math.max.apply(null, array);
       };
@@ -215,8 +226,13 @@ angular.module('woin-character')
       var attrMax = maxArray(attrVal);
       var skillMax = maxArray(skillVal);
 
+      var raceModifier = 0;
+      if ($scope.character.race !== undefined) {
+        raceModifier = raceSizes[$scope.character.race.Size];
+      }
+
       // TODO: return equipment
-      return defenseMap(attrMax + skillMax);
+      return Math.max(10, defenseMap(attrMax + skillMax) + raceModifier);
     };
 
     $scope.printCareers = function() {
