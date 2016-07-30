@@ -287,7 +287,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <tr>\n' +
     '                <td colspan="17" height="17" align="left" >\n' +
     '                    <span style="font-weight: bold;">EXPLOITS</span><br/>\n' +
-    '                    <span ng-repeat="e in character.exploits">\n' +
+    '                    <span ng-repeat="e in character.exploits track by $index">\n' +
     '                        <strong>{{ e.Exploit }}.</strong> {{ e.Benefits }}<br/>\n' +
     '                    </span>\n' +
     '                </td>\n' +
