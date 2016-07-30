@@ -11,7 +11,7 @@ Ogron,Large,"str:2,end:2","carrying, hardy, bravery, intimidate","Dull-witted, S
 Orc,Medium,"str:2,agi:2,int:3,mag:-3","[combat], blacksmithing, carousing, hunting, intimidation, mining, running, tactics, tracking","Bloodlust, Darksight, Glory",34-67
 Saurian,Medium,"str:1,end:1,wil:1","survival, climbing, running, spears","Cold-blooded, Poison Breath, Tail, Nomad",20-40
 Smallfolk,Small,"agi:2,cha:2,luc:2,mag:1","[crafting], appraisal, bluffing, brewing, cooking, diplomacy, farming, fishing, slings, stealth, thievery","Evasion, Stubborn",39-84
-Spartan,Medium,"str:1,agi:1,end:1","[combat], intimidate, carousing","Berserker, Redundant organs, Warlike",30-75
+Spartan,Medium,"str:1,agi:1,end:1","[combat], intimidate, carousing","Berserker, Redundant Organs, Warlike",30-75
 Sylvan Elf,Medium,"agi:2,end:2,mag:2","animal handling, bows, climbing, herbalism, nature, running, stealth, surivival, tracking","Fey, Healthy, Nature Affinity, Trance, Tree-Dwellers, Unimpeded",190-549
 Venetian,Medium,"agi:1,log:2,luc:-2,psi:3","reactions, acrobatics, perception, concentration, religion, [scientific]","Naturally Psionic, Acute Hearing, Learned, Disciplined",190-549
 														,,,,,
