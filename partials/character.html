@@ -143,7 +143,7 @@
             <tr>
                 <td colspan="17" height="17" align="left" >
                     <span style="font-weight: bold;">EXPLOITS</span><br/>
-                    <span ng-repeat="e in character.exploits">
+                    <span ng-repeat="e in character.exploits track by $index">
                         <strong>{{ e.Exploit }}.</strong> {{ e.Benefits }}<br/>
                     </span>
                 </td>
