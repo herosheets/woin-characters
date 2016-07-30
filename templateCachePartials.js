@@ -954,7 +954,7 @@ module.run(['$templateCache', function($templateCache) {
     '    </thead>\n' +
     '    <tbody>\n' +
     '    <tr ng-repeat="c in character.exploits track by $index">\n' +
-    '        <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)" ng-disabled="isRaceExploit(c.Exploit) || isCareerExploit(c.Exploit)">Remove</button></td>\n' +
+    '        <td><button type="button" class="btn btn-primary" ng-click="removeItem(c)" ng-disabled="isRaceExploit(c.Exploit) || isCareerExploit(c.Exploit) || isAgeExploit(c.Exploit)">Remove</button></td>\n' +
     '        <td ng-bind="c.Exploit"></td>\n' +
     '        <td>{{c.Benefits}}</td>\n' +
     '    </tr>\n' +
