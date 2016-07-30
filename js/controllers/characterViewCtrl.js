@@ -95,7 +95,7 @@ angular.module('woin-character')
 
     $scope.calculateJump = function() {
       var horizontal = $scope.getStatForCharacter('AGI') * 2;
-      var vertical = $scope.getStatForCharacter('STR') * 2;
+      var vertical = Math.min($scope.getStatForCharacter('STR'), horizontal);
       return horizontal + "\'/" + vertical + "\'";
     };
 
