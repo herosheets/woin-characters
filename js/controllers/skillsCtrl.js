@@ -86,7 +86,7 @@ angular.module('woin-character')
 
       console.log("Current careers:");
       console.log($scope.character.Careers);
-      angular.forEach($scope.character.Careers, function(qty, career) {
+      angular.forEach($scope.character.careers, function(qty, career) {
         var localChoices = $scope.careerHash[career]['Skill Choices'];
         for (i = 0; i < qty; i++) {
           var idx = (i + 1) * 2;
