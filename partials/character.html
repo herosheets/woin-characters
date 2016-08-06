@@ -34,7 +34,7 @@
             <tr>
                 <td colspan="17" height="17" align="left" bgcolor="#dddddd">
                     <em>
-                       A/n {{character.Trait}} {{character.age}} year old {{character.race.Race}} with {{ character.hook }}
+                       A/n {{character.Trait}} {{character.age}} year old {{character.race.Race}} {{ character.getCareerString() }} with {{ character.hook }}
                     </em><br/>
                     <em>
                         (grade {{ character.careerGrade() }} ; max dice pool {{ character.maxDicePool() }})

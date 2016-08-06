@@ -281,6 +281,16 @@ angular.module('woin-character')
           return 0;
         }
       },
+      getCareerString: function() {
+        var maxCareer = { name: undefined, rank: 0};
+        angular.forEach(this.careers, function(rank,career) {
+          if (maxCareer.rank < rank) {
+            maxCareer.rank = rank;
+            maxCareer.name = career;
+          }
+        });
+        return maxCareer.name;
+      },
       calculateExploitXpCost: function(universalExploits) {
         var eachCost = (this.totalCareers() + 1) * 5; // half the cost of the next grade
         var exploitCount = universalExploits.length - 1;
