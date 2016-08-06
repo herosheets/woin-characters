@@ -203,9 +203,15 @@ module.run(['$templateCache', function($templateCache) {
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
-    '                <td colspan="17" height="17" align="left" bgcolor="#dddddd"><span\n' +
-    '                        style="font-weight: bold;">HEALTH</span> {{ character.derived.health }} <br\n' +
-    '                       >\n' +
+    '                <td colspan="17" height="17" align="left" bgcolor="#dddddd">\n' +
+    '                    <span style="font-weight: bold;">HEALTH</span>\n' +
+    '                    <button type="button" class="btn btn-xs btn-primary" ng-click="calculateHealth()">Roll Dice</button>\n' +
+    '                    {{ character.cheatHealth || character.health  }}\n' +
+    '                    Override your score:\n' +
+    '                    <input\n' +
+    '                           type="number"\n' +
+    '                           ng-change="toggleHealthCheating()"\n' +
+    '                           ng-model="character.cheatHealth"><br>\n' +
     '                </td>\n' +
     '            </tr>\n' +
     '            <tr>\n' +
@@ -300,6 +306,9 @@ module.run(['$templateCache', function($templateCache) {
     '            <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>\n' +
     '            <p style="color:red;" ng-if="character.age < character.minimumAge">\n' +
     '                Overrode minimum age dice rolls.\n' +
+    '            </p>\n' +
+    '            <p style="color:red;" ng-if="character.healthCheat">\n' +
+    '                Overrode health score.\n' +
     '            </p>\n' +
     '            <p>\n' +
     '               Extra XP Spent: {{ character.totalXpCost() }}\n' +
