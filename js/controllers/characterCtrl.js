@@ -209,6 +209,7 @@ angular.module('woin-character')
       description: "",
       career: [],
       skills: [],
+      health: 10,
       minimumAge: 0,
       equipment: {
         Gear: {},

@@ -92,7 +92,34 @@ angular.module('woin-character')
     $scope.getDiceForCharacter = function(stats) {
         return $scope.getDiceValueForCharacter(stats)+'d6';
     };
+   
+    $scope.overrideHealth = function() {
+      $scope.character.healthCheat = true;
+    };
+    
+    $scope.calculateHealth = function() {
+      $scope.character.cheatHealth = undefined;
+      $scope.character.healthCheat = undefined;
+      var health = 0;
+      health = health + dice.roll($scope.getDiceForCharacter('END'));
+      health = health + dice.roll($scope.getDiceForCharacter('WIL'));
+      var hardyRanks = $scope.character.getSkillRanks('Hardy');
+      if (hardyRanks > 0) {
+        health = health + dice.roll(hardyRanks + "d6");
+      }
 
+      if (health < 10) {
+        health = 10;
+      }
+      $scope.character.health = health;
+    };
+
+    $scope.toggleHealthCheating = function() {
+      if ($scope.character.cheatHealth > $scope.character.health) {
+        $scope.overrideHealth();
+      }
+    };
+    
     $scope.calculateJump = function() {
       var horizontal = $scope.getStatForCharacter('AGI') * 2;
       var vertical = Math.min($scope.getStatForCharacter('STR'), horizontal);

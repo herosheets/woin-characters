@@ -59,9 +59,15 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="17" height="17" align="left" bgcolor="#dddddd"><span
-                        style="font-weight: bold;">HEALTH</span> {{ character.derived.health }} <br
-                       >
+                <td colspan="17" height="17" align="left" bgcolor="#dddddd">
+                    <span style="font-weight: bold;">HEALTH</span>
+                    <button type="button" class="btn btn-xs btn-primary" ng-click="calculateHealth()">Roll Dice</button>
+                    {{ character.cheatHealth || character.health  }}
+                    Override your score:
+                    <input
+                           type="number"
+                           ng-change="toggleHealthCheating()"
+                           ng-model="character.cheatHealth"><br>
                 </td>
             </tr>
             <tr>
@@ -156,6 +162,9 @@
             <p><strong>Careers. </strong>{{ printCareers() }} <strong>Age </strong>{{ character.age }} ({{ character.calculateAgeRange()}})</p>
             <p style="color:red;" ng-if="character.age < character.minimumAge">
                 Overrode minimum age dice rolls.
+            </p>
+            <p style="color:red;" ng-if="character.healthCheat">
+                Overrode health score.
             </p>
             <p>
                Extra XP Spent: {{ character.totalXpCost() }}
